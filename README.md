@@ -22,8 +22,8 @@ This chat example showcases how to use `socket.io` with a static `express` serve
 
 Once the server is running, open the project in the shape of 'https://projectname-username.c9.io/'. As you enter your name, watch the Users list (on the left) update. Once you press Enter or Send, the message is shared with all connected clients.
 
-## React Dvelop
+## React Dvelop setting
 
-1) babel --presets react ../react_view --watch --out-dir ../../static/js/view/
+1) babel --presets react develop/react_view/ --watch --out-dir server/static/js/view/
 
 아직좀.. 대충 셋팅.
