@@ -1,17 +1,22 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
-exports.start = function(request, response) {
-    viwe();
-}
+exports.start = function (request, response) {
+  viwe();
+};
 
 function viwe() {
-    var Hello = React.createClass({
-      render: function() {
-        return (
-          <div className="container">Hello {this.props.name}</div>
-        );
-      }
-    })
-    
-    React.render(<Hello name="React" />, document.getElementById("app"));   
+  var Hello = React.createClass({
+    displayName: 'Hello',
+
+    render: function () {
+      return React.createElement(
+        'div',
+        { className: 'container' },
+        'Hello'
+      );
+    }
+  });
+
+  ReactDOM.render(React.createElement(Hello, { name: 'React' }), document.getElementById("app"));
 }
