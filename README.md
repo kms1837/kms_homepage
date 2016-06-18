@@ -6,6 +6,7 @@
      `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
     ----------------------------------------------------------------- 
 
+으로 개발하고 있습니다 ^^
 
 Welcome to your Node.js project on Cloud9 IDE!
 
@@ -23,6 +24,6 @@ Once the server is running, open the project in the shape of 'https://projectnam
 
 ## React Dvelop
 
-1) babel --presets react ../react_view --watch --out-dir ../../router/
+1) babel --presets react ../react_view --watch --out-dir ../../static/js/view/
 
 아직좀.. 대충 셋팅.
