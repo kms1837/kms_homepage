@@ -16,7 +16,7 @@ $(document).ready(function() {
                 change_page_url = 'board.html';
                 break;
             case 'menu2':
-                change_page_url = 'question_board.html';
+                change_page_url = 'question';
                 break;
             case 'menu3':
                 change_page_url = 'chat.html';
