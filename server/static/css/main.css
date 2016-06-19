@@ -68,8 +68,12 @@ section{
 
 footer {
     text-align: center;
-    margin-top: 10px;
-    color : white;
+    margin: 30px auto;
+    padding: 20px;
+    width: 1000px;
+    border: 12px solid #008DCE;
+    background-color: #fff;
+    box-shadow: 18px 21px rgba(1, 99, 144, 0.72);
 }
 
 #status {
@@ -126,7 +130,16 @@ footer {
     width: 400px;
 }
 
+.question_view {
+    overflow-y: scroll;
+    height: 450px;
+}
+
 .question {
+    margin-bottom: 10px;
+}
+
+.question_box {
     padding: 10px;
     border-bottom: 10px #484848 double;
 }
@@ -139,25 +152,35 @@ footer {
     /*font-size: 40px;*/
     font-weight: bold;
     color: #008dce;
+    margin-right: 10px;
 }
 
 .reply_text {
     color: white;
 }
 
+.reply_box {
+    border: 2px #484848 solid;
+}
+
 .reply {
     padding: 10px;
-    padding-left: 30px;
+    padding-left: 15px;
     background-color: #636262;
-    border-bottom: 5px #484848 dashed;
+    border-bottom: 2px #484848 dashed;
+}
+
+.reply:last-child {
+    border : none;
 }
 
 .content {
     position: relative;
 }
 
-.question {
+.question_box {
     background-color: #9c9c9c;
+    border-bottom: 2px #484848 solid;
 }
 
 .edit_bar {
@@ -166,4 +189,9 @@ footer {
     width: 100%;
     background-color: #484848;
     bottom: 0;
+}
+
+.edit_tool {
+    padding: 10px;
+    text-align: center;
 }
