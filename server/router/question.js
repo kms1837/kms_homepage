@@ -4,7 +4,7 @@ var mongoClient = new mongoClientObject(new Server('localhost',27017,{'native_pa
 var db = mongoClient.db('test');*/
 
 exports.start = function (request, response) {
-    mongodb_test();
+    //mongodb_test();
     response.render('../template/question_board.html');
 };
 /*
