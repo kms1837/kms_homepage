@@ -1,5 +1,4 @@
 var fs = require('fs');
-var tail_module = require('tail').Tail;
 
 exports.log_get = function(request, response) {
     fs.readFile('static/log/ruliweb_login_log.log', 'utf8', function(err, data) {

@@ -8,8 +8,10 @@ var reactify    = require('reactify');
 var Handlebars  = require('handlebars');
 var React       = require('react');*/
 
-exports.run = function(app){
+exports.run = function(app, mongoose){
     app.get('/ruliweblog', ruliweb_log.log_get);
+    app.get('/', main.start);
     app.get('/main', main.start);
-    app.get('/question', question.start);
+    //app.get('/question', question.start);
+    question.start(app, mongoose);
 };

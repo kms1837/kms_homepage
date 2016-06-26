@@ -1,25 +1,48 @@
-/*var mongoClientObject = require('mongodb').MongoClient
-var mongoServer = require('mongodb').Server;
-var mongoClient = new mongoClientObject(new Server('localhost',27017,{'native_parser':true}));
-var db = mongoClient.db('test');*/
-
-exports.start = function (request, response) {
-    //mongodb_test();
+/*exports.start = function (request, response) {
     response.render('../template/question_board.html');
-};
-/*
-function mongodb_test() {
-    mongoClient.open(function(err, client) {
-        if(err) throw err;
-        console.log('mongo client connected');
-        
-        db.collection('users').insert({city:'suji'},function(err,doc){
-            console.log('inserted '+doc[0]._id+':'+doc[0].city);
-        });
-        
-        db.collection('users').findOne({},function(err,doc){
-            if(err) throw err;
-            console.log(doc);
+};*/
+
+exports.start = function (app, mongoose) {
+    var MemoSchema= mongoose.Schema({
+        username:String,
+        memo:String
+    });
+    
+    var Memo = mongoose.model('MemoModel', MemoSchema);
+    
+    app.post('/question/insert', function(req, res, err){
+        console.log(req.body);
+        var memo = new Memo({username:req.body.username, text:req.body.memo});
+            memo.save(function(err,silence){
+              if(err){
+                  console.err(err);
+                  throw err;
+              }
+              res.send('success');
+            });
+    });
+    
+    app.get('/question/users/:username', function(req,res,err){
+        var memos = new Memo();
+        Memo.findOne({'username':req.params.username},function(err,memo){
+            if(err){
+                console.err(err);
+                throw err;
+            }
+            console.log(memo);
+            res.send(200,memo);
         });
     });
-}*/
+    
+    app.get('/question/datas', function(req,res,err){
+        var memos = new Memo();
+        Memo.find().select('username').exec(function(err,memos){
+            if(err){
+                console.err(err);
+                throw err;
+            }
+            console.log(memos);
+            res.send(memos);
+        });
+    });
+}

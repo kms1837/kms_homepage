@@ -1,6 +1,16 @@
-var reply_data = [{ id: 1, text: "답변1이요!" }, { id: 2, text: "답변2이요!" }];
+/*var reply_data = [
+  {id: 1, text: "답변1이요!"},
+  {id: 2, text: "답변2이요!"}
+];
 
-var data = [{ id: 1, username: "Pete Hunt", text: "질문이요!", replys: reply_data }, { id: 2, username: "Jordan Walke", text: "This is *another* comment", replys: reply_data }, { id: 3, username: "Jordan Walke", text: "This is *another* comment", replys: reply_data }, { id: 4, username: "Jordan Walke", text: "This is *another* comment", replys: reply_data }];
+var data = [
+  {id: 1, username: "Pete Hunt", text: "질문이요!", replys:reply_data},
+  {id: 2, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data},
+  {id: 3, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data},
+  {id: 4, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data}
+];*/
+
+var data;
 
 var QuestionBoard = React.createClass({
   displayName: "QuestionBoard",
