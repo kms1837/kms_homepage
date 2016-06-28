@@ -17,8 +17,13 @@ app.configure(serverConfigure);
 chat_socket.run(server);
 router.run(app, mongoose);
 
-mongoose.connect(dbUrl, function() {
-  server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", serverStartCall);
+mongoose.connect(dbUrl, function(err) {
+  if(!err) {
+    console.log('~ connect DB ~');
+    server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", serverStartCall);
+  } else {
+    console.log(err);
+  }
 });
 
 

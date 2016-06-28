@@ -13,31 +13,78 @@ var data = [
 var data;
 
 var QuestionBoard = React.createClass({
+  getInitialState : function() {
+    return {data: []}
+  },
+  componentDidMount: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  }, // 컴포넌트가 렌더링 된다음 자동 호출됩니다.
   render : function() {
     return (
       <div className="question_board">
-        <QuestionList data={this.props.data}/>
+        <QuestionList data={this.state.data}/>
       </div>
+    );
+  }
+});
+
+var ReplyFrom = React.createClass({
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var text = this.refs.text.value.trim();
+    if (!author) {
+      return;
+    }
+    // TODO: 서버에 요청을 전송합니다
+    this.refs.text.value = '';
+    return;
+  },
+  render : function() {
+    return (
+      <form className="replyForm">
+        <input type="text" placeholder="내용을 입력하세요..." ref="text" />
+        <input type="submit" value="올리기" />
+      </form>
+    );    
+  }
+});
+
+var QuestionBox = React.createClass({
+  render : function() {
+    var data = this.props.data;
+    data.replys = [];
+    return (
+        <div className="question_box">
+          <div className="question">
+            <h3>{data.username}</h3>
+            <span className="question_text">{data.text}</span>
+          </div>
+          <QuestionReply data={data.replys}/>
+          <ReplyFrom />
+        </div>
     );
   }
 });
 
 var QuestionList = React.createClass({
   render : function() {
-    var questionNodes = this.props.data.map(function(question) {
-      return(
-        <div className="question_box">
-          <div className="question" key={question.id}>
-            <h3>{question.username}</h3>
-            <span className="question_text">{question.id} : {question.text}</span>
-          </div>
-          <QuestionReply data={question.replys}/>
-        </div>
-      );
-    });
+    console.log(this.props.data);
+    var questions = this.props.data;
     return (
       <div className="question_list">
-        {questionNodes}
+        {questions.map(function(question) {
+          return <QuestionBox data={question}/>;
+        })}
       </div>
     );
   }
@@ -62,6 +109,6 @@ var QuestionReply = React.createClass({
 });
 
 ReactDOM.render(
-  <QuestionBoard data={data}/>,
+  <QuestionBoard url="/question/datas"/>,
   document.querySelector('.question_view')
 );
