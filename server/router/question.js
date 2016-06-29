@@ -2,71 +2,84 @@
     response.render('../template/question_board.html');
 };*/
 
-exports.start = function (app, mongoose) {
-    var MemoSchema= mongoose.Schema({
-        username:String,
-        text:String
+var express = require('express');
+var mongoose = require('mongoose');
+var router = express.Router();
+
+var QuestionSchema= mongoose.Schema({
+    id          : Number,
+    username    : String,
+    text        : String,
+    replys      : Array,
+    created_at  : Date
+});
+
+var ReplySchema= mongoose.Schema({
+    text:String
+});
+
+var Question = mongoose.model('QuestionModel', QuestionSchema);
+var Reply = mongoose.model('ReplyModel', ReplySchema);
+
+router.get('/', function(request, response) {
+    response.render('../template/question_board.html');
+});
+
+router.get('/users/:username', function(req,res,err){
+    var memos = new Question();
+    Question.findOne({'username':req.params.username},function(err, memo){
+        if(err){
+            console.err(err);
+            throw err;
+        }
+        console.log(memo);
+        res.send(200,memo);
     });
-    
-    var ReplySchema= mongoose.Schema({
-        text:String
+});
+
+router.get('/datas', function(req, res, err){
+    var memos = new Question();
+    Question.find().exec(function(err,memos){
+        if(err){
+            console.err(err);
+            throw err;
+        }
+        console.log(memos);
+        res.send(memos);
     });
+});
+
+router.post('/insert', function(request, response, err) {
+    var userData = request.body;
     
-    var Memo = mongoose.model('MemoModel', MemoSchema);
-    var Reply = mongoose.model('ReplyModel', ReplySchema);
-    
-    app.post('/question/insert', function(req, res, err) {
-        /*Memo.findOne({'_id':req.params.username},function(err,memo){
-            
-        }*/
-        /*console.log(req.body);
-        var memo = new Memo({username:req.body.username, text:req.body.text});
-            memo.save(function(err,silence){
-              if(err){
-                  console.err(err);
-                  throw err;
-              }
-              res.send('success');
-            });*/
+    Question.count({}, function(err, count) {
+        var insertData = {
+            id          : count,
+            username    : userData.username,
+            text        : userData.text,
+            created_at  : new Date()
+        }
+        
+        var new_question = new Question(insertData);
+        new_question.save();
+        
+        response.send('ok!');
     });
+});
+
+router.post('/:question_id/reply/insert', function(request, response, err){
+    var adminData = request.body;
+    var questionID = request.params.question_id;
     
-    app.post('/question/reply/insert', function(req, res, err){
-        console.log(req.body);
-        var reply = new Reply({text:req.body.text});
-            memo.save(function(err,silence){
-              if(err){
-                  console.err(err);
-                  throw err;
-              }
-              res.send('success');
-            });
-    });
+    console.log('id : ', questionID);
+    console.log('adminData', adminData);
     
-    app.get('/question', function(request, response) {
-        response.render('../template/question_board.html');
-    });
+    var replysData = {text : adminData.text}
     
-    app.get('/question/users/:username', function(req,res,err){
-        var memos = new Memo();
-        Memo.findOne({'username':req.params.username},function(err,memo){
-            if(err){
-                console.err(err);
-                throw err;
-            }
-            console.log(memo);
-            res.send(200,memo);
-        });
+    Question.findOneAndUpdate({'id': questionID},
+    {$push : { replys : replysData} },
+    function(err, question) {
     });
-    
-    app.get('/question/datas', function(req,res,err){
-        var memos = new Memo();
-        Memo.find().exec(function(err,memos){
-            if(err){
-                console.err(err);
-                throw err;
-            }
-            console.log(memos);
-            res.send(memos);
-        });
-    });
-}
+});
+
+module.exports = router;

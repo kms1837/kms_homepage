@@ -45,19 +45,21 @@ var ReplyFrom = React.createClass({
 
   handleSubmit: function (e) {
     e.preventDefault();
-    var text = this.refs.text.value.trim();
-    if (!author) {
-      return;
-    }
-    // TODO: 서버에 요청을 전송합니다
+
+    var form_data = {
+      question_id: 0,
+      text: e.target.text.value
+    };
+
+    $.post('/question/' + 0 + '/reply/insert', form_data);
+
     this.refs.text.value = '';
-    return;
   },
   render: function () {
     return React.createElement(
       'form',
-      { className: 'replyForm' },
-      React.createElement('input', { type: 'text', placeholder: '내용을 입력하세요...', ref: 'text' }),
+      { className: 'replyForm', onSubmit: this.handleSubmit },
+      React.createElement('input', { type: 'text', name: 'text', placeholder: '내용을 입력하세요...', ref: 'text' }),
       React.createElement('input', { type: 'submit', value: '올리기' })
     );
   }
@@ -68,7 +70,7 @@ var QuestionBox = React.createClass({
 
   render: function () {
     var data = this.props.data;
-    data.replys = [];
+    console.log(data.replys);
     return React.createElement(
       'div',
       { className: 'question_box' },
@@ -78,7 +80,18 @@ var QuestionBox = React.createClass({
         React.createElement(
           'h3',
           null,
+          React.createElement(
+            'span',
+            { className: 'question_id' },
+            data.id
+          ),
+          ' ] ',
           data.username
+        ),
+        React.createElement(
+          'h4',
+          null,
+          data.created_at
         ),
         React.createElement(
           'span',
@@ -115,7 +128,7 @@ var QuestionReply = React.createClass({
     var questionReplyNodes = this.props.data.map(function (reply) {
       return React.createElement(
         'div',
-        { className: 'reply', key: reply.id },
+        { className: 'reply' },
         React.createElement(
           'span',
           { className: 'reply_deco' },
@@ -124,8 +137,6 @@ var QuestionReply = React.createClass({
         React.createElement(
           'span',
           { className: 'reply_text' },
-          reply.id,
-          ' : ',
           reply.text
         )
       );

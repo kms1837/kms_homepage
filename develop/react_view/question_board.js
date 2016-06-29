@@ -41,18 +41,20 @@ var QuestionBoard = React.createClass({
 var ReplyFrom = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
-    var text = this.refs.text.value.trim();
-    if (!author) {
-      return;
+    
+    var form_data = {
+      question_id : 0,
+      text : e.target.text.value
     }
-    // TODO: 서버에 요청을 전송합니다
+    
+    $.post('/question/' + 0 + '/reply/insert', form_data);
+    
     this.refs.text.value = '';
-    return;
   },
   render : function() {
     return (
-      <form className="replyForm">
-        <input type="text" placeholder="내용을 입력하세요..." ref="text" />
+      <form className="replyForm" onSubmit={this.handleSubmit}>
+        <input type="text" name="text" placeholder="내용을 입력하세요..." ref="text" />
         <input type="submit" value="올리기" />
       </form>
     );    
@@ -62,11 +64,12 @@ var ReplyFrom = React.createClass({
 var QuestionBox = React.createClass({
   render : function() {
     var data = this.props.data;
-    data.replys = [];
+    console.log(data.replys);
     return (
         <div className="question_box">
           <div className="question">
-            <h3>{data.username}</h3>
+            <h3><span className="question_id">{data.id}</span> ] {data.username}</h3>
+            <h4>{data.created_at}</h4>
             <span className="question_text">{data.text}</span>
           </div>
           <QuestionReply data={data.replys}/>
@@ -94,9 +97,9 @@ var QuestionReply = React.createClass({
   render : function() {
     var questionReplyNodes = this.props.data.map(function(reply) {
       return(
-        <div className="reply" key={reply.id}>
+        <div className="reply">
           <span className="reply_deco"> ></span>
-          <span className="reply_text">{reply.id} : {reply.text}</span>
+          <span className="reply_text">{reply.text}</span>
         </div>
       );
     });

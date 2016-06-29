@@ -9,7 +9,7 @@
     "async": "~0.2.8",
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.3.0",
-    "express": "~3.2.4",
+    "express": "~4.13.4",
     "grunt-contrib-concat": "^1.0.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

@@ -13,7 +13,7 @@ var chat_socket = require('./module/chat_socket');
 
 var dbUrl = 'mongodb://localhost/test';
 
-app.configure(serverConfigure);
+serverConfigure();
 chat_socket.run(server);
 router.run(app, mongoose);
 
@@ -41,25 +41,3 @@ function serverStartCall() {
   console.log("~ runserver", addr.address + ":" + addr.port + ' ~');
   //console.log(process.env.IP);
 }
-
-/*   var db = request.db;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-var mongoose = request.mongoose;
-console.log('open!');
-
-var kittySchema = mongoose.Schema({
-    name: String
-});
-
-kittySchema.methods.speak = function () {
-  var greeting = this.name? "Meow name is " + this.name : "I don't have a name";
-  console.log(greeting);
-}
-
-var Kitten = mongoose.model('Kitten', kittySchema);
-var silence = new Kitten({ name: 'Silence' })
-var fluffy = new Kitten({ name: 'fluffy' });
-fluffy.speak();
-});
-*/
