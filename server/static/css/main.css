@@ -139,6 +139,12 @@ footer {
     margin-bottom: 10px;
 }
 
+.created_at {
+    float: right;
+    font-size: 11px;
+    color: #4C4C4C;
+}
+
 .question_box {
     padding: 10px;
     border-bottom: 10px #484848 double;

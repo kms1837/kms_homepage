@@ -10,13 +10,11 @@ var data = [
   {id: 4, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data}
 ];*/
 
-var data;
-
 var QuestionBoard = React.createClass({
-  getInitialState : function() {
+  getInitialState () {
     return {data: []}
   },
-  componentDidMount: function() {
+  updateData() {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -28,8 +26,11 @@ var QuestionBoard = React.createClass({
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+  },
+  componentDidMount () {
+    this.updateData();
   }, // 컴포넌트가 렌더링 된다음 자동 호출됩니다.
-  render : function() {
+  render () {
     return (
       <div className="question_board">
         <QuestionList data={this.state.data}/>
@@ -39,7 +40,7 @@ var QuestionBoard = React.createClass({
 });
 
 var ReplyFrom = React.createClass({
-  handleSubmit: function(e) {
+  handleSubmit (e) {
     e.preventDefault();
     
     var form_data = {
@@ -51,7 +52,7 @@ var ReplyFrom = React.createClass({
     
     this.refs.text.value = '';
   },
-  render : function() {
+  render () {
     return (
       <form className="replyForm" onSubmit={this.handleSubmit}>
         <input type="text" name="text" placeholder="내용을 입력하세요..." ref="text" />
@@ -62,14 +63,12 @@ var ReplyFrom = React.createClass({
 });
 
 var QuestionBox = React.createClass({
-  render : function() {
+  render () {
     var data = this.props.data;
-    console.log(data.replys);
     return (
         <div className="question_box">
           <div className="question">
-            <h3><span className="question_id">{data.id}</span> ] {data.username}</h3>
-            <h4>{data.created_at}</h4>
+            <h3><span className="question_id">{data.id}</span> ] {data.username} <span className="created_at">{data.created_at}</span></h3>
             <span className="question_text">{data.text}</span>
           </div>
           <QuestionReply data={data.replys}/>
@@ -80,8 +79,7 @@ var QuestionBox = React.createClass({
 });
 
 var QuestionList = React.createClass({
-  render : function() {
-    console.log(this.props.data);
+  render () {
     var questions = this.props.data;
     return (
       <div className="question_list">
@@ -94,7 +92,7 @@ var QuestionList = React.createClass({
 });
 
 var QuestionReply = React.createClass({
-  render : function() {
+  render () {
     var questionReplyNodes = this.props.data.map(function(reply) {
       return(
         <div className="reply">

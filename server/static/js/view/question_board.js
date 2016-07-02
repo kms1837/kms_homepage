@@ -10,15 +10,13 @@ var data = [
   {id: 4, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data}
 ];*/
 
-var data;
-
 var QuestionBoard = React.createClass({
   displayName: 'QuestionBoard',
 
-  getInitialState: function () {
+  getInitialState() {
     return { data: [] };
   },
-  componentDidMount: function () {
+  updateData() {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -30,8 +28,11 @@ var QuestionBoard = React.createClass({
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+  },
+  componentDidMount() {
+    this.updateData();
   }, // 컴포넌트가 렌더링 된다음 자동 호출됩니다.
-  render: function () {
+  render() {
     return React.createElement(
       'div',
       { className: 'question_board' },
@@ -43,7 +44,7 @@ var QuestionBoard = React.createClass({
 var ReplyFrom = React.createClass({
   displayName: 'ReplyFrom',
 
-  handleSubmit: function (e) {
+  handleSubmit(e) {
     e.preventDefault();
 
     var form_data = {
@@ -55,7 +56,7 @@ var ReplyFrom = React.createClass({
 
     this.refs.text.value = '';
   },
-  render: function () {
+  render() {
     return React.createElement(
       'form',
       { className: 'replyForm', onSubmit: this.handleSubmit },
@@ -68,9 +69,8 @@ var ReplyFrom = React.createClass({
 var QuestionBox = React.createClass({
   displayName: 'QuestionBox',
 
-  render: function () {
+  render() {
     var data = this.props.data;
-    console.log(data.replys);
     return React.createElement(
       'div',
       { className: 'question_box' },
@@ -86,12 +86,13 @@ var QuestionBox = React.createClass({
             data.id
           ),
           ' ] ',
-          data.username
-        ),
-        React.createElement(
-          'h4',
-          null,
-          data.created_at
+          data.username,
+          ' ',
+          React.createElement(
+            'span',
+            { className: 'created_at' },
+            data.created_at
+          )
         ),
         React.createElement(
           'span',
@@ -108,8 +109,7 @@ var QuestionBox = React.createClass({
 var QuestionList = React.createClass({
   displayName: 'QuestionList',
 
-  render: function () {
-    console.log(this.props.data);
+  render() {
     var questions = this.props.data;
     return React.createElement(
       'div',
@@ -124,7 +124,7 @@ var QuestionList = React.createClass({
 var QuestionReply = React.createClass({
   displayName: 'QuestionReply',
 
-  render: function () {
+  render() {
     var questionReplyNodes = this.props.data.map(function (reply) {
       return React.createElement(
         'div',
