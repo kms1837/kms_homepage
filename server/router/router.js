@@ -3,10 +3,10 @@ var main        = require('../router/main');
 var question    = require('../router/question');
 var user        = require('../router/user');
 
-exports.run = function(app, mongoose){
-    app.get('/ruliweblog', ruliweb_log.log_get);
-    app.get('/', main.start);
-    app.get('/main', main.start);
+module.exports = function(app){
+    app.get('/ruliweblog', ruliweb_log);
+    app.get('/', main);
+    app.get('/main', main);
     app.use('/question', question);
     app.use('/user', user);
     //question.start(app, mongoose);

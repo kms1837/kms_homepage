@@ -15,7 +15,7 @@ var dbUrl = 'mongodb://localhost/test';
 
 serverConfigure();
 chat_socket.run(server);
-router.run(app, mongoose);
+router(app);
 
 mongoose.connect(dbUrl, function(err) {
   if(!err) {

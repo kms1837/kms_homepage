@@ -6,20 +6,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 
-var QuestionSchema= mongoose.Schema({
-    id          : Number,
-    username    : String,
-    text        : String,
-    replys      : Array,
-    created_at  : Date
-});
-
-var ReplySchema= mongoose.Schema({
-    text:String
-});
-
-var Question = mongoose.model('QuestionModel', QuestionSchema);
-var Reply = mongoose.model('ReplyModel', ReplySchema);
+var Question = require('../models/question_model.js');
 
 router.get('/', function(request, response) {
     response.render('../template/question_board.html');
@@ -38,7 +25,6 @@ router.get('/users/:username', function(req,res,err){
 });
 
 router.get('/datas', function(req, res, err){
-    var memos = new Question();
     Question.find().exec(function(err,memos){
         if(err){
             console.err(err);
