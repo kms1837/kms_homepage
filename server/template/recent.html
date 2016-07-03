@@ -1,0 +1,46 @@
+<div class='content_view'>
+</div>
+
+<script>
+    function rss_convert(xml)
+    {
+        var json_datas = new Array;
+        
+        $(xml).find('entry').each(function(index, entry){
+            //$(entry).find('content')[0]
+            //details
+            var json_data = {
+                update : $(entry).find('updated').text(),
+                title  : $(entry).find('title').text(),
+                details : $($(entry).find('content').text())[8]
+            }
+            json_datas.push(json_data);
+        });
+        return json_datas;
+    }
+    
+    function test(data)
+    {
+        var json_datas = rss_convert(data);
+        
+        $(json_datas).each(function(index, object) {
+            //console.log(object);
+            $('.content_view').append(object.details);
+        })
+    }
+    
+    $(function() {
+      $.ajax({
+          url: '/git_rss',
+          dataType: 'xml',
+          cache: false,
+          success: function(data) {
+            test(data);
+            //this.setState({data: rss_convert(data)});
+          }.bind(this)
+        });
+    })
+    
+</script>
+
+<!--<script src="/static/js/view/git_rss_reader.js"></script>-->
