@@ -11,6 +11,8 @@ body {
     background-color: #00A0E9;
 }
 
+ul { margin: 0; list-style: none; padding: 0;}
+
 .wrap {
     position: relative;
     height: 100%;
@@ -169,6 +171,8 @@ footer {
     border: 2px #484848 solid;
 }
 
+.reply_box ul { margin: 0; list-style: none; padding: 0;}
+
 .reply {
     padding: 10px;
     padding-left: 15px;
@@ -200,6 +204,31 @@ footer {
     border-bottom: 2px #484848 solid;
 }
 
+.question_write {
+    background-color: #9c9c9c;
+    height: 100%;
+    padding: 20px;
+}
+
+.form_box label {
+    width: 20%;
+    display: inline-block;
+}
+
+.form_box input[type="text"] {
+    width: 70%;
+    display: inline-block;
+}
+
+.form_box textarea {
+    margin: 10px 0;
+    width: 100%;
+    height: 300px;
+}
+
+.form_box .btn_group {
+    text-align: right;
+}
 .edit_bar {
     position: absolute;
     height: 50px;

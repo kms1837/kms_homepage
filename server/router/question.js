@@ -19,18 +19,16 @@ router.get('/users/:username', function(req,res,err){
             console.err(err);
             throw err;
         }
-        console.log(memo);
         res.send(200,memo);
     });
 });
 
 router.get('/datas', function(req, res, err){
-    Question.find().exec(function(err,memos){
+    Question.find().sort({id:-1}).exec(function(err,memos){
         if(err){
             console.err(err);
             throw err;
         }
-        console.log(memos);
         res.send(memos);
     });
 });
@@ -60,7 +58,9 @@ router.post('/:question_id/reply/insert', function(request, response, err){
     console.log('id : ', questionID);
     console.log('adminData', adminData);
     
-    var replysData = {text : adminData.text}
+    var replysData = {
+        text : adminData.text
+    }
     
     Question.findOneAndUpdate({'id': questionID},
     {$push : { replys : replysData} },

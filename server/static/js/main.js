@@ -46,7 +46,7 @@ $(document).ready(function() {
     }
     
     
-    $(document).on('click', '.edit_question', function(data) {
+    /*$(document).on('click', '.edit_question', function(data) {
       console.log('asd');
-    });
+    });*/
 });
