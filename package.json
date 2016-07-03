@@ -14,5 +14,8 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "socket.io": "~0.9.14"
+  },
+  "devDependencies": {
+    "request": "^2.72.0"
   }
 }

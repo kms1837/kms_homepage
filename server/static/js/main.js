@@ -19,6 +19,9 @@ $(document).ready(function() {
                 change_page_url = 'question';
                 break;
             case 'menu3':
+                change_page_url = 'recent.html';
+                break;
+            case 'menu4':
                 change_page_url = 'chat.html';
                 break;
         }
