@@ -1,6 +1,6 @@
 import QuestionBox from './QuestionBox.js'
 
-class QuestionList extends React.component
+class QuestionList extends React.Component
 {
     constructor(){
         super();

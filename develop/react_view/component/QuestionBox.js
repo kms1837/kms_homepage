@@ -1,6 +1,7 @@
 import QuestionReply from './QuestionReply.js'
+import ReplyFrom from './ReplyFrom.js'
 
-class QuestionBox extends React.component
+class QuestionBox extends React.Component
 {
     render () {
         var data = this.props.data;

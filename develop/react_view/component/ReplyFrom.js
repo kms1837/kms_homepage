@@ -1,4 +1,4 @@
-class ReplyFrom extends React.component
+class ReplyFrom extends React.Component
 {
   handleSubmit (e) {
     e.preventDefault();

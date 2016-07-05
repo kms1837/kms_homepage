@@ -1,20 +1,9 @@
-/*var reply_data = [
-  {id: 1, text: "답변1이요!"},
-  {id: 2, text: "답변2이요!"}
-];
-
-var data = [
-  {id: 1, username: "Pete Hunt", text: "질문이요!", replys:reply_data},
-  {id: 2, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data},
-  {id: 3, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data},
-  {id: 4, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data}
-];*/
 import QuestionList from './component/QuestionList.js'
 import QuestionWrite from './component/QuestionWrite.js'
 
-class QuestionView extends React.component
+class QuestionView extends React.Component
 {
-  constructor(){
+  constructor() {
     super();
     this.state = {view: <QuestionList url="/question/datas"/>, btn_name : '글쓰기', view_num : 0};
   }

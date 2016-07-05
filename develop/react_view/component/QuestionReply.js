@@ -1,4 +1,4 @@
-class QuestionReply extends React.component
+class QuestionReply extends React.Component
 {
   render () {
     var questionReplyNodes = this.props.data.map(function(reply) {

@@ -1,4 +1,4 @@
-class QuestionWrite extends React.component
+class QuestionWrite extends React.Component
 {
   submitEvent(e) {
     e.preventDefault();
