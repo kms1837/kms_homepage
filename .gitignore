@@ -4,3 +4,4 @@ dump.rdb
 *tutorial*
 mongodb/
 test/
+npm-debug.log

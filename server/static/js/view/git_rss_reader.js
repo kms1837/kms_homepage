@@ -1,3 +1,7 @@
+'use strict';
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function rss_convert(xml) {
     var json_datas = new Array();
     $(xml).find('entry').each(function (index, entry) {
@@ -8,10 +12,9 @@ function rss_convert(xml) {
         var json_data = {
             update: $(entry).find('updated').text(),
             title: $(entry).find('title').text(),
-            details: {
-                profile_img: details.find('.gravatar img src'),
-                profile_img: commitObject
-            }
+            details: _defineProperty({
+                profile_img: details.find('.gravatar img src')
+            }, 'profile_img', commitObject)
         };
         json_datas.push(json_data);
     });
@@ -20,8 +23,7 @@ function rss_convert(xml) {
 
 var RssList = React.createClass({
     displayName: 'RssList',
-
-    render() {
+    render: function render() {
         return React.createElement(
             'ul',
             null,
@@ -39,11 +41,10 @@ var RssList = React.createClass({
 
 var RssView = React.createClass({
     displayName: 'RssView',
-
-    getInitialState() {
+    getInitialState: function getInitialState() {
         return { data: [] };
     },
-    updateData() {
+    updateData: function updateData() {
         $.ajax({
             url: this.props.url,
             dataType: 'xml',
@@ -53,10 +54,11 @@ var RssView = React.createClass({
             }.bind(this)
         });
     },
-    componentDidMount() {
+    componentDidMount: function componentDidMount() {
         this.updateData();
-    }, // 컴포넌트가 렌더링 된다음 자동 호출됩니다.
-    render() {
+    },
+    // 컴포넌트가 렌더링 된다음 자동 호출됩니다.
+    render: function render() {
         return React.createElement(
             'div',
             { className: 'question_view' },
