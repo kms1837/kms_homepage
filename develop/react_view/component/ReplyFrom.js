@@ -1,5 +1,9 @@
 class ReplyFrom extends React.Component
 {
+  constructor() {
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
   handleSubmit (e) {
     e.preventDefault();
     
@@ -13,7 +17,7 @@ class ReplyFrom extends React.Component
     
     $.post('/question/' + question_id + '/reply/insert', form_data);
     
-    this.refs.text.value = '';
+    e.target.text.value = '';
     this.props.update();
   }
   render () {

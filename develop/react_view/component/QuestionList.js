@@ -4,6 +4,7 @@ class QuestionList extends React.Component
 {
     constructor(){
         super();
+        this.updateData = this.updateData.bind(this);
         this.state = {data: []};
     }
  
@@ -13,6 +14,7 @@ class QuestionList extends React.Component
           dataType: 'json',
           cache: false,
           success: function(data) {
+            console.log(this);
             this.setState({data: data});
           }.bind(this),
           error: function(xhr, status, err) {
