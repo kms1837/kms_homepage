@@ -51,7 +51,26 @@ router.post('/insert', function(request, response, err) {
     });
 });
 
-router.post('/:question_id/reply/insert', function(request, response, err){
+router.delete('/:question_id', function(request, response) {
+    var questionID = request.params.question_id;
+    Question.findOne({'id': questionID}).remove(function(err){
+        if(!err) response.send('delete ok');
+        else     console.log(err);
+    });
+});
+
+router.delete('/:question_id/reply/', function(request, response) {
+    var questionID = request.params.question_id;
+    var deleteIndex = request.body.index;
+    
+    Question.findOne({'id': questionID}, function(err, question) {
+        question.replys.splice(deleteIndex, 1);
+        question.save();
+        response.send(question.replys);
+    });
+});
+
+router.post('/:question_id/reply/', function(request, response, err){
     var adminData = request.body;
     var questionID = request.params.question_id;
     
