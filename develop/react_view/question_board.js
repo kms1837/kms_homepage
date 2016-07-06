@@ -6,6 +6,7 @@ class QuestionView extends React.Component
   constructor() {
     super();
     this.state = {view: <QuestionList url="/question/datas"/>, btn_name : '글쓰기', view_num : 0};
+    this.view_change = this.view_change.bind(this);
   }
   
   view_change() {

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -6,9 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _QuestionReply = require("./QuestionReply.js");
+var _QuestionReply = require('./QuestionReply.js');
 
 var _QuestionReply2 = _interopRequireDefault(_QuestionReply);
+
+var _ReplyFrom = require('./ReplyFrom.js');
+
+var _ReplyFrom2 = _interopRequireDefault(_ReplyFrom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18,8 +22,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var QuestionBox = function (_React$component) {
-    _inherits(QuestionBox, _React$component);
+var QuestionBox = function (_React$Component) {
+    _inherits(QuestionBox, _React$Component);
 
     function QuestionBox() {
         _classCallCheck(this, QuestionBox);
@@ -28,45 +32,45 @@ var QuestionBox = function (_React$component) {
     }
 
     _createClass(QuestionBox, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             var data = this.props.data;
             return React.createElement(
-                "div",
-                { className: "question_box", itemID: data.id },
+                'div',
+                { className: 'question_box', itemID: data.id },
                 React.createElement(
-                    "div",
-                    { className: "question" },
+                    'div',
+                    { className: 'question' },
                     React.createElement(
-                        "h3",
+                        'h3',
                         null,
                         React.createElement(
-                            "span",
-                            { className: "question_id" },
+                            'span',
+                            { className: 'question_id' },
                             data.id
                         ),
-                        " ] ",
+                        ' ] ',
                         data.username,
-                        " ",
+                        ' ',
                         React.createElement(
-                            "span",
-                            { className: "created_at" },
+                            'span',
+                            { className: 'created_at' },
                             data.created_at
                         )
                     ),
                     React.createElement(
-                        "span",
-                        { className: "question_text" },
+                        'span',
+                        { className: 'question_text' },
                         data.text
                     )
                 ),
                 React.createElement(_QuestionReply2.default, { key: data.id, data: data.replys }),
-                React.createElement(ReplyFrom, { update: this.props.update })
+                React.createElement(_ReplyFrom2.default, { update: this.props.update })
             );
         }
     }]);
 
     return QuestionBox;
-}(React.component);
+}(React.Component);
 
 exports.default = QuestionBox;

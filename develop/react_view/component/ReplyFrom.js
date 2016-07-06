@@ -15,7 +15,7 @@ class ReplyFrom extends React.Component
     var question_box = $(e.target).closest('.question_box');
     var question_id  = question_box.attr('itemID');
     
-    $.post('/question/' + question_id + '/reply/insert', form_data);
+    $.post('/question/' + question_id + '/reply/', form_data);
     
     e.target.text.value = '';
     this.props.update();

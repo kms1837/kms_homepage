@@ -52,7 +52,7 @@
 
 	var _QuestionList2 = _interopRequireDefault(_QuestionList);
 
-	var _QuestionWrite = __webpack_require__(4);
+	var _QuestionWrite = __webpack_require__(5);
 
 	var _QuestionWrite2 = _interopRequireDefault(_QuestionWrite);
 
@@ -62,21 +62,10 @@
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*var reply_data = [
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 {id: 1, text: "답변1이요!"},
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 {id: 2, text: "답변2이요!"}
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ];
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               var data = [
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 {id: 1, username: "Pete Hunt", text: "질문이요!", replys:reply_data},
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 {id: 2, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data},
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 {id: 3, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data},
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 {id: 4, username: "Jordan Walke", text: "This is *another* comment", replys:reply_data}
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ];*/
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-
-	var QuestionView = function (_React$component) {
-	  _inherits(QuestionView, _React$component);
+	var QuestionView = function (_React$Component) {
+	  _inherits(QuestionView, _React$Component);
 
 	  function QuestionView() {
 	    _classCallCheck(this, QuestionView);
@@ -84,6 +73,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionView).call(this));
 
 	    _this.state = { view: React.createElement(_QuestionList2.default, { url: '/question/datas' }), btn_name: '글쓰기', view_num: 0 };
+	    _this.view_change = _this.view_change.bind(_this);
 	    return _this;
 	  }
 
@@ -129,7 +119,7 @@
 	  }]);
 
 	  return QuestionView;
-	}(React.component);
+	}(React.Component);
 
 	ReactDOM.render(React.createElement(QuestionView, null), document.querySelector('.content_view'));
 
@@ -157,14 +147,15 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var QuestionList = function (_React$component) {
-	  _inherits(QuestionList, _React$component);
+	var QuestionList = function (_React$Component) {
+	  _inherits(QuestionList, _React$Component);
 
 	  function QuestionList() {
 	    _classCallCheck(this, QuestionList);
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionList).call(this));
 
+	    _this.updateData = _this.updateData.bind(_this);
 	    _this.state = { data: [] };
 	    return _this;
 	  }
@@ -177,6 +168,7 @@
 	        dataType: 'json',
 	        cache: false,
 	        success: function (data) {
+	          console.log(this);
 	          this.setState({ data: data });
 	        }.bind(this),
 	        error: function (xhr, status, err) {
@@ -210,7 +202,7 @@
 	  }]);
 
 	  return QuestionList;
-	}(React.component);
+	}(React.Component);
 
 	exports.default = QuestionList;
 
@@ -218,7 +210,7 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -230,6 +222,10 @@
 
 	var _QuestionReply2 = _interopRequireDefault(_QuestionReply);
 
+	var _ReplyFrom = __webpack_require__(4);
+
+	var _ReplyFrom2 = _interopRequireDefault(_ReplyFrom);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -238,56 +234,79 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var QuestionBox = function (_React$component) {
-	    _inherits(QuestionBox, _React$component);
+	var QuestionBox = function (_React$Component) {
+	    _inherits(QuestionBox, _React$Component);
 
 	    function QuestionBox() {
 	        _classCallCheck(this, QuestionBox);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionBox).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionBox).call(this));
+
+	        _this.question_delete = _this.question_delete.bind(_this);
+	        return _this;
 	    }
 
 	    _createClass(QuestionBox, [{
-	        key: "render",
+	        key: 'question_delete',
+	        value: function question_delete(event) {
+	            var question_id = $(event.target).closest('.question_box').attr('itemID');
+
+	            $.ajax({
+	                url: '/question/' + question_id,
+	                type: 'DELETE',
+	                success: function (data) {
+	                    this.props.update();
+	                }.bind(this),
+	                error: function error(xhr, status, err) {
+	                    console.error(this.props.url, status, err.toString());
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'render',
 	        value: function render() {
 	            var data = this.props.data;
 	            return React.createElement(
-	                "div",
-	                { className: "question_box", itemID: data.id },
+	                'div',
+	                { className: 'question_box', itemID: data.id },
 	                React.createElement(
-	                    "div",
-	                    { className: "question" },
+	                    'div',
+	                    { className: 'question' },
 	                    React.createElement(
-	                        "h3",
+	                        'h3',
 	                        null,
 	                        React.createElement(
-	                            "span",
-	                            { className: "question_id" },
+	                            'span',
+	                            { className: 'question_id' },
 	                            data.id
 	                        ),
-	                        " ] ",
+	                        ' ] ',
 	                        data.username,
-	                        " ",
 	                        React.createElement(
-	                            "span",
-	                            { className: "created_at" },
-	                            data.created_at
+	                            'span',
+	                            { className: 'created_at' },
+	                            data.created_at,
+	                            React.createElement(
+	                                'button',
+	                                { onClick: this.question_delete },
+	                                'X'
+	                            )
 	                        )
 	                    ),
 	                    React.createElement(
-	                        "span",
-	                        { className: "question_text" },
+	                        'span',
+	                        { className: 'question_text' },
 	                        data.text
 	                    )
 	                ),
-	                React.createElement(_QuestionReply2.default, { key: data.id, data: data.replys }),
-	                React.createElement(ReplyFrom, { update: this.props.update })
+	                React.createElement(_QuestionReply2.default, { update: this.props.update, key: data.id, data: data.replys }),
+	                React.createElement(_ReplyFrom2.default, { update: this.props.update })
 	            );
 	        }
 	    }]);
 
 	    return QuestionBox;
-	}(React.component);
+	}(React.Component);
 
 	exports.default = QuestionBox;
 
@@ -295,7 +314,7 @@
 /* 3 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -309,39 +328,74 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var QuestionReply = function (_React$component) {
-	  _inherits(QuestionReply, _React$component);
+	var QuestionReply = function (_React$Component) {
+	  _inherits(QuestionReply, _React$Component);
 
 	  function QuestionReply() {
 	    _classCallCheck(this, QuestionReply);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionReply).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionReply).call(this));
+
+	    _this.reply_delete = _this.reply_delete.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(QuestionReply, [{
-	    key: "render",
+	    key: 'reply_delete',
+	    value: function reply_delete(event) {
+	      var index = $(event.target).closest('li').attr('itemID');
+	      var question_id = $(event.target).closest('.question_box').attr('itemID');
+	      var deleteForm = {
+	        index: index
+	      };
+
+	      $.ajax({
+	        url: '/question/' + question_id + '/reply/',
+	        type: 'DELETE',
+	        data: deleteForm,
+	        success: function (data) {
+	          //this.setState({data: data});
+	          this.props.update();
+	        }.bind(this),
+	        error: function error(xhr, status, err) {
+	          console.error(this.props.url, status, err.toString());
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
-	      var questionReplyNodes = this.props.data.map(function (reply) {
+	      var self = this;
+	      var questionReplyNodes = this.props.data.map(function (reply, index) {
 	        return React.createElement(
-	          "li",
-	          { className: "reply" },
+	          'li',
+	          { className: 'reply', itemID: index },
 	          React.createElement(
-	            "span",
-	            { className: "reply_deco" },
-	            " >"
+	            'span',
+	            { className: 'reply_deco' },
+	            ' >'
 	          ),
 	          React.createElement(
-	            "span",
-	            { className: "reply_text" },
+	            'span',
+	            { className: 'reply_text' },
 	            reply.text
+	          ),
+	          React.createElement(
+	            'span',
+	            { className: 'reply_delete' },
+	            React.createElement(
+	              'button',
+	              { onClick: self.reply_delete },
+	              'X'
+	            )
 	          )
 	        );
 	      });
 	      return React.createElement(
-	        "div",
-	        { className: "reply_box" },
+	        'div',
+	        { className: 'reply_box' },
 	        React.createElement(
-	          "ul",
+	          'ul',
 	          null,
 	          questionReplyNodes
 	        )
@@ -350,12 +404,77 @@
 	  }]);
 
 	  return QuestionReply;
-	}(React.component);
+	}(React.Component);
 
 	exports.default = QuestionReply;
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ReplyFrom = function (_React$Component) {
+	  _inherits(ReplyFrom, _React$Component);
+
+	  function ReplyFrom() {
+	    _classCallCheck(this, ReplyFrom);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ReplyFrom).call(this));
+
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(ReplyFrom, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+
+	      var form_data = {
+	        question_id: 0,
+	        text: e.target.text.value
+	      };
+
+	      var question_box = $(e.target).closest('.question_box');
+	      var question_id = question_box.attr('itemID');
+
+	      $.post('/question/' + question_id + '/reply/', form_data);
+
+	      e.target.text.value = '';
+	      this.props.update();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'form',
+	        { className: 'replyForm', onSubmit: this.handleSubmit },
+	        React.createElement('input', { type: 'text', name: 'text', placeholder: '내용을 입력하세요...', ref: 'text' }),
+	        React.createElement('input', { type: 'submit', value: '올리기' })
+	      );
+	    }
+	  }]);
+
+	  return ReplyFrom;
+	}(React.Component);
+
+	exports.default = ReplyFrom;
+
+/***/ },
+/* 5 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -372,13 +491,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var QuestionWrite = function (_React$component) {
-	  _inherits(QuestionWrite, _React$component);
+	var QuestionWrite = function (_React$Component) {
+	  _inherits(QuestionWrite, _React$Component);
 
 	  function QuestionWrite() {
 	    _classCallCheck(this, QuestionWrite);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionWrite).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuestionWrite).call(this));
+
+	    _this.submitEvent = _this.submitEvent.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(QuestionWrite, [{
@@ -439,7 +561,7 @@
 	  }]);
 
 	  return QuestionWrite;
-	}(React.component);
+	}(React.Component);
 
 	exports.default = QuestionWrite;
 

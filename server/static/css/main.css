@@ -201,6 +201,10 @@ footer {
     padding: 5px;
 }
 
+.reply_delete {
+    float:right;
+}
+
 .content {
     position: relative;
     overflow-y: auto;
@@ -236,6 +240,7 @@ footer {
 .form_box .btn_group {
     text-align: right;
 }
+
 .edit_bar {
     position: absolute;
     height: 50px;

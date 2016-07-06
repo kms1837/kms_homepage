@@ -12,13 +12,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ReplyFrom = function (_React$component) {
-  _inherits(ReplyFrom, _React$component);
+var ReplyFrom = function (_React$Component) {
+  _inherits(ReplyFrom, _React$Component);
 
   function ReplyFrom() {
     _classCallCheck(this, ReplyFrom);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(ReplyFrom).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ReplyFrom).call(this));
+
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    return _this;
   }
 
   _createClass(ReplyFrom, [{
@@ -36,7 +39,7 @@ var ReplyFrom = function (_React$component) {
 
       $.post('/question/' + question_id + '/reply/insert', form_data);
 
-      this.refs.text.value = '';
+      e.target.text.value = '';
       this.props.update();
     }
   }, {
@@ -52,6 +55,6 @@ var ReplyFrom = function (_React$component) {
   }]);
 
   return ReplyFrom;
-}(React.component);
+}(React.Component);
 
 exports.default = ReplyFrom;

@@ -1,5 +1,9 @@
 class QuestionWrite extends React.Component
 {
+  constructor() {
+    super();
+    this.submitEvent = this.submitEvent.bind(this);
+  }
   submitEvent(e) {
     e.preventDefault();
     
