@@ -1,7 +1,4 @@
-<div class='content_view'>
-</div>
-
-<script>
+<!--<script>
     function rss_convert(xml)
     {
         var json_datas = new Array;
@@ -22,10 +19,9 @@
     function test(data)
     {
         var json_datas = rss_convert(data);
-        
         $(json_datas).each(function(index, object) {
             //console.log(object);
-            $('.content_view').append(object.details);
+            if(index == 0) $('.content_view').append(object.details);
         })
     }
     
@@ -41,6 +37,6 @@
         });
     })
     
-</script>
+</script> -->
 
-<!--<script src="/static/js/view/git_rss_reader.js"></script>-->
+<script src="/static/js/view/git_view.js"></script>
