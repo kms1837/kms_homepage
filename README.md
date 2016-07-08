@@ -25,6 +25,6 @@ Once the server is running, open the project in the shape of 'https://projectnam
 ## React Dvelop setting
 
     $ babel --presets develop/react_view/ --watch --out-dir server/static/js/view/
-    $ webpack --watch
+    $ webpack --watch --progress
 
 아직좀.. 대충 셋팅.
