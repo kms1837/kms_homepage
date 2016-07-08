@@ -48,11 +48,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _QuestionList = __webpack_require__(1);
+	var _QuestionList = __webpack_require__(3);
 
 	var _QuestionList2 = _interopRequireDefault(_QuestionList);
 
-	var _QuestionWrite = __webpack_require__(5);
+	var _QuestionWrite = __webpack_require__(7);
 
 	var _QuestionWrite2 = _interopRequireDefault(_QuestionWrite);
 
@@ -121,10 +121,12 @@
 	  return QuestionView;
 	}(React.Component);
 
-	ReactDOM.render(React.createElement(QuestionView, null), document.querySelector('.content_view'));
+	ReactDOM.render(React.createElement(QuestionView, null), document.querySelector('.content'));
 
 /***/ },
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -135,7 +137,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _QuestionBox = __webpack_require__(2);
+	var _QuestionBox = __webpack_require__(4);
 
 	var _QuestionBox2 = _interopRequireDefault(_QuestionBox);
 
@@ -207,7 +209,7 @@
 	exports.default = QuestionList;
 
 /***/ },
-/* 2 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -218,11 +220,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _QuestionReply = __webpack_require__(3);
+	var _QuestionReply = __webpack_require__(5);
 
 	var _QuestionReply2 = _interopRequireDefault(_QuestionReply);
 
-	var _ReplyFrom = __webpack_require__(4);
+	var _ReplyFrom = __webpack_require__(6);
 
 	var _ReplyFrom2 = _interopRequireDefault(_ReplyFrom);
 
@@ -311,7 +313,7 @@
 	exports.default = QuestionBox;
 
 /***/ },
-/* 3 */
+/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -409,7 +411,7 @@
 	exports.default = QuestionReply;
 
 /***/ },
-/* 4 */
+/* 6 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -474,7 +476,7 @@
 	exports.default = ReplyFrom;
 
 /***/ },
-/* 5 */
+/* 7 */
 /***/ function(module, exports) {
 
 	"use strict";

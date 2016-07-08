@@ -253,3 +253,26 @@ footer {
     padding: 10px;
     text-align: center;
 }
+
+.content_view {
+    padding: 20px;
+}
+
+.rss_reader {
+    font-size: 12px;
+}
+
+.rss_reader .commit_nodes {
+    padding: 20px;
+    font-size: 10px;
+}
+
+.icons {
+    text-align: center;
+    padding: 20px;
+    border: 4px dashed #a7a7a7;
+}
+
+.icons img{
+    width : 80px;
+}
