@@ -183,7 +183,9 @@
 	                    //console.log(data);
 	                    return React.createElement(
 	                        "div",
-	                        null,
+	                        { className: "rss_node" },
+	                        React.createElement("span", { className: "history_group" }),
+	                        React.createElement("span", { className: "history_line" }),
 	                        React.createElement(
 	                            "b",
 	                            null,
@@ -241,6 +243,7 @@
 	                    return React.createElement(
 	                        "li",
 	                        null,
+	                        React.createElement("span", { className: "history_node" }),
 	                        React.createElement("img", { src: data.profile_img.src }),
 	                        data.msg,
 	                        data.commit_id.outerText
