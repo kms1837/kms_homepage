@@ -2,15 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 
-var userSchema = mongoose.Schema({
-    id          : String,
-    name        : String,
-    password    : String,
-    another     : String,
-    created_at  : String
-})
-
-var UserModel = mongoose.model('UserModel', userSchema);
+var UserModel = require('../models/user_model.js');
 
 router.get('/', function(request, response) {
     UserModel.find(function(err, users) {

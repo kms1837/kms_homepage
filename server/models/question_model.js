@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var QuestionSchema= mongoose.Schema({
+var questionSchema= mongoose.Schema({
     id          : Number,
     username    : String,
     text        : String,
@@ -8,4 +8,4 @@ var QuestionSchema= mongoose.Schema({
     created_at  : Date
 });
 
-module.exports = mongoose.model('QuestionModel', QuestionSchema);
+module.exports = mongoose.model('QuestionModel', questionSchema);

@@ -5,3 +5,5 @@ dump.rdb
 mongodb/
 test/
 npm-debug.log
+node_modules/
+server/static/js/view/

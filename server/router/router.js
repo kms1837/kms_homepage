@@ -2,6 +2,7 @@ var ruliweb_log = require('../router/log_get');
 var main        = require('../router/main');
 var question    = require('../router/question');
 var user        = require('../router/user');
+var sign        = require('../router/sign');
 var git_rss     = require('../router/git_rss_get');
 
 module.exports = function(app){
@@ -11,5 +12,5 @@ module.exports = function(app){
     app.get('/main', main);
     app.use('/question', question);
     app.use('/user', user);
-    //question.start(app, mongoose);
+    app.use('/', sign);
 };

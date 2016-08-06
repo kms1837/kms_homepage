@@ -7,7 +7,8 @@ module.exports = {
     entry : {
         question_view : react_dev_path + 'question_board/question_board.js',
         git_view : react_dev_path + 'git_rss_reader/git_rss_reader.js',
-        main_view : react_dev_path +  'main/main.js'
+        main_view : react_dev_path +  'main/main.js',
+        sign_in_view : react_dev_path +  'sign_in/sign_in_view.js',
     },
     
     output : {

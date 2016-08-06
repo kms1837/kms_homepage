@@ -4,6 +4,7 @@ var path    = require('path');
 var express = require("express");
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var app     = express();
 var server  = http.createServer(app);
@@ -34,6 +35,12 @@ function serverConfigure() {
   app.use(express.static(path.resolve(__dirname, 'template')));
   app.use(bodyParser.json());         
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  app.use(session({
+   secret: '@#@$MYSIGN#@$#$',
+   resave: false,
+   saveUninitialized: true
+  }));
 }
 
 function serverStartCall() {
