@@ -65,7 +65,4 @@ class RssView extends React.Component
     }
 }
 
-ReactDOM.render(
-  <RssView url='/git_rss'/>,
-  document.querySelector('.content')
-);
+export default RssView;

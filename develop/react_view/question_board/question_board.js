@@ -37,7 +37,4 @@ class QuestionView extends React.Component
   }
 }
 
-ReactDOM.render(
-  <QuestionView/>,
-  document.querySelector('.content')
-);
+export default QuestionView;

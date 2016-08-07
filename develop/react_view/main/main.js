@@ -1,8 +1,33 @@
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
+
+import QuestionBoard from '../question_board/question_board.js'
+import RssView from '../git_rss_reader/git_rss_reader.js'
+
+import RightSide from './component/right_side.js'
+import LeftMenus from './component/left_menus.js'
+
+class App extends React.Component
+{
+    render () {
+        return (
+            <div className="container">
+                <header>
+                    <h1>kms.Net</h1>
+                </header>
+                <LeftMenus/>
+                <section className="content">
+                    {this.props.children}
+                </section>
+                <RightSide/>
+            </div>
+        );
+    }
+}
 
 class Main extends React.Component
 {
-    render() {
-        return(
+    render () {
+        return (
             <div className="content_view">
                 <div>
                     <h1>kms1837의 홈페이지 입니다..</h1>
@@ -22,6 +47,13 @@ class Main extends React.Component
 }
 
 ReactDOM.render(
-  <Main/>,
-  document.querySelector('.content_view')
+  <Router history = {browserHistory}>
+      <Route path = "/" component = {App}>
+         <IndexRoute component = {Main} />
+         <Route path = "home" component = {Main} />
+         <Route path = "question" component = {QuestionBoard} />
+         <Route path = "resent" component = {RssView} />
+      </Route>
+   </Router>,
+  document.querySelector('.wrap')
 );

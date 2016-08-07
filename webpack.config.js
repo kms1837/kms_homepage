@@ -5,10 +5,9 @@ var react_dev_path = __dirname + '/develop/react_view/';
 
 module.exports = {
     entry : {
-        question_view : react_dev_path + 'question_board/question_board.js',
-        git_view : react_dev_path + 'git_rss_reader/git_rss_reader.js',
         main_view : react_dev_path +  'main/main.js',
-        sign_in_view : react_dev_path +  'sign_in/sign_in_view.js',
+        sign_in_view : react_dev_path +  'sign/sign_in_view.js',
+        sign_up_view : react_dev_path +  'sign/sign_up_view.js'
     },
     
     output : {
