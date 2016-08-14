@@ -13,17 +13,26 @@
     "grunt-contrib-concat": "^1.0.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "socket.io": "~0.9.14"
+    "socket.io": "~0.9.14",
+    "swig": "^1.4.2"
   },
   "devDependencies": {
+    "JSX": "^1.0.6",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-es2016": "^6.11.3",
     "forever": "^0.15.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-file-cache": "0.0.1",
+    "gulp-webpack": "^1.5.0",
+    "import": "0.0.6",
+    "node-jsx": "^0.13.3",
     "react": "^15.3.0",
     "react-router": "^2.6.1",
     "request": "^2.72.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-stream": "^3.2.0"
   }
 }

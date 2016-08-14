@@ -1,3 +1,4 @@
+require('babel-register');
 
 var http    = require('http');
 var path    = require('path');
@@ -18,6 +19,8 @@ serverConfigure();
 chat_socket.run(server);
 router(app);
 
+require('node-jsx').install();
+
 mongoose.connect(dbUrl, function(err) {
   if(!err) {
     console.log('~ connect DB ~');
@@ -37,9 +40,9 @@ function serverConfigure() {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   app.use(session({
-   secret: '@#@$MYSIGN#@$#$',
-   resave: false,
-   saveUninitialized: true
+    secret: '@#@$MYSIGN#@$#$',
+    resave: false,
+    saveUninitialized: true
   }));
 }
 

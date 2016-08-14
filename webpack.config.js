@@ -3,9 +3,16 @@ var webpack = require('webpack');
 
 var react_dev_path = __dirname + '/develop/react_view/';
 
+/*
+        app_view : react_dev_path +  'main/app.js',
+        main_view : react_dev_path +  'main/main_view.js',
+        question_view : react_dev_path +  'question_board/question_board.js',
+        rss_view : react_dev_path +  'git_rss_reader/git_rss_reader.js',
+        react_routes : react_dev_path + 'react_routes.js',
+*/
 module.exports = {
     entry : {
-        main_view : react_dev_path +  'main/main.js',
+        main : react_dev_path + 'main.js',
         sign_in_view : react_dev_path +  'sign/sign_in_view.js',
         sign_up_view : react_dev_path +  'sign/sign_up_view.js'
     },

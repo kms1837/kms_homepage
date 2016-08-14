@@ -17,18 +17,29 @@ router.post('/sign_in', function(request, response) {
     var userName = request.params.username;
     var password = request.params.password;
     
+    session.name = 'asd';
+    
     UserModel.findOne({'username':userName, 'password': password },function(err, user){
         if(err){
             console.err(err);
             throw err;
+        } else {
+            if(user) {
+                session.name = user.name;
+                response.redirect('/');       
+            }    
         }
-        session.name = user.name;
-        response.redirect('/');
     });
-});
+    
+    response.send(200, '뭐?');
+});//sign_in
 
 router.get('/sign_out', function(request, response) {
     response.render('../template/sign_in.html');
+});
+
+router.get('/sign_up', function(request, response) {
+    response.render('../template/sign_up.html');
 });
 
 module.exports = router;

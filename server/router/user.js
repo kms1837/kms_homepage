@@ -10,21 +10,24 @@ router.get('/', function(request, response) {
     });
 });
 
-router.post('/insert', function(request, response) {
+router.post('/', function(request, response) {
     var userData = request.body;
     console.log('user insert : ', userData);
     
-   UserModel.count({}, function(err, count) {
-    var insertData = {
-        id : count,
-        name : userData.username,
-        password : userData.password,
-        another : userData.another,
-        created_at : new Date()
-    }
-    
-    var newUser = new UserModel(insertData);
-    newUser.save();
+   UserModel.count({}, (err, count) => {
+        var insertData = {
+            id : count,
+            name : userData.username,
+            password : userData.password,
+            created_at : new Date()
+        }
+        
+        var newUser = new UserModel(insertData);
+        newUser.save();
+        
+        var session = request.session;
+        session.name = userData.username;
+        response.redirect('/');
    });
 });
 

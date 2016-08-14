@@ -4,7 +4,7 @@ var userSchema = mongoose.Schema({
     id          : Number,
     name        : String,
     password    : String,
-    another     : String,
+    author      : String,
     created_at  : Date
 })
 
