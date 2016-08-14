@@ -1,0 +1,10 @@
+
+[2016-08-14]
+맨처름 require('babel-register');를 넣어주면 es6문법을 실시간으로 사용할 수 있다.
+다만 따로 파일을 변환하는 식보다 실행이 많이 느리다.
+
+서버사이드 렌더링 구축 완료하는데 많은 도움이된 강좌들..
+https://velopert.com/1456 - 걸프 사용법 
+https://www.npmjs.com/package/webpack-stream
+https://webpack.github.io/docs/usage-with-gulp.html
+http://sahatyalkabov.com/create-a-character-voting-app-using-react-nodejs-mongodb-and-socketio/
