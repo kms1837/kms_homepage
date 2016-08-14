@@ -45,7 +45,7 @@ class RssView extends React.Component
     
     updateData() {
         $.ajax({
-          url: this.props.url,
+          url: '/get_git_rss',
           dataType: 'xml',
           cache: false,
           success: function(data) {

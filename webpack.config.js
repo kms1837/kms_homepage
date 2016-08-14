@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var react_dev_path = __dirname + '/develop/react_view/';
+var react_dev_path = __dirname + '/server/view/';
 
 /*
         app_view : react_dev_path +  'main/app.js',
@@ -10,6 +10,7 @@ var react_dev_path = __dirname + '/develop/react_view/';
         rss_view : react_dev_path +  'git_rss_reader/git_rss_reader.js',
         react_routes : react_dev_path + 'react_routes.js',
 */
+
 module.exports = {
     entry : {
         main : react_dev_path + 'main.js',

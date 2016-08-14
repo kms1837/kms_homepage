@@ -1,7 +1,3 @@
-/*exports.start = function (request, response) {
-    response.render('../template/question_board.html');
-};*/
-
 var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
@@ -10,13 +6,12 @@ var Question = require('../models/question_model.js');
 
 router.get('/', function(request, response) {
     console.log('call!');
-    Question.find().sort({id:-1}).exec(function(err, memos){
+    Question.find().sort({id:-1}).exec(function(err, questions){
         if (err) {
             console.err(err);
             throw err;
         }
-        console.log(memos);
-        response.send(memos);
+        response.status(200).send(questions);
     });
 });
 
