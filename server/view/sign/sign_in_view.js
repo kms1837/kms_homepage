@@ -28,17 +28,16 @@ class SignInView extends React.Component
     
     render() {
         return (
-            <div>
-                <input onChange={this.changeValue} name='username' type="text"/>
-                <input onChange={this.changeValue} type="text"/>
-                <button onClick={this.logIN}>submit</button>
-                <button>회원가입</button>
+            <div className="wrap">
+                <div className="container">
+                    <input onChange={this.changeValue} name='username' type="text"/>
+                    <input onChange={this.changeValue} type="text"/>
+                    <button onClick={this.logIN}>submit</button>
+                    <button>회원가입</button>
+                </div>
             </div>
         );
     }
 }
 
-ReactDOM.render(
-  <SignInView/>,
-  document.querySelector('.content')
-);
+export default SignInView;

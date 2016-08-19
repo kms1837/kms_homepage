@@ -1,10 +1,59 @@
 
 [2016-08-14]
-맨처름 require('babel-register');를 넣어주면 es6문법을 실시간으로 사용할 수 있다.
-다만 따로 파일을 변환하는 식보다 실행이 많이 느리다.
+    * 맨처름 require('babel-register');를 넣어주면 es6문법을 실시간으로 사용할 수 있다.
+      다만 따로 파일을 변환하는 식보다 실행이 많이 느리다.
 
-서버사이드 렌더링 구축 완료하는데 많은 도움이된 강좌들..
-https://velopert.com/1456 - 걸프 사용법 
-https://www.npmjs.com/package/webpack-stream
-https://webpack.github.io/docs/usage-with-gulp.html
-http://sahatyalkabov.com/create-a-character-voting-app-using-react-nodejs-mongodb-and-socketio/
+
+    * 서버사이드 부분에 match및 app.use를 맨처음에 두니까 기존에 만들었던 RESTful이 모두 고장나는 현상발생
+      그냥 맨뒤에 둬 봤는데 문제 해결됐다 ㄱ-... 이것때문에 몇시간을 고생한건지 ㅠㅠ..
+  
+  서버사이드 렌더링 구축 완료하는데 많은 도움이된 강좌들..
+    - https://velopert.com/1456 - 걸프 사용법 
+    - https://www.npmjs.com/package/webpack-stream
+    - https://webpack.github.io/docs/usage-with-gulp.html
+    - http://sahatyalkabov.com/create-a-character-voting-app-using-react-nodejs-mongodb-and-socketio/
+    
+[2016-08-15]
+
+    * 라우트에서 따로 값 넘겨주는법.. 아직 해결못함 React router Inject props on server RouterContext
+    
+    - https://github.com/reactjs/react-router/blob/master/docs/Troubleshooting.md#passing-additional-values-into-route-components
+    
+    - https://github.com/reactjs/react-router/issues/3183
+    
+[2016-08-16]
+    
+    ( server )
+      var from = {
+          permission : 8
+      }
+      
+      var html = renderToString(<RouterContext {...renderProps} 
+                            createElement={(Component, props) => {
+                              return <Component {...from} {...props} />;
+                            }}/>);
+                            
+    // var test = React.cloneElement(html, { permission: 0}); 공식 홈페이지에서는 이렇게 하라는데.. 작동안되는것 같음.
+                            
+    // createElement은 컴포넌트가 생성될때 자동 발생하는 이벤트인것 같음 저런식으로 컴포넌트에 {...from}을 넣어주면 개인의 props를 넘겨줄수가 있음
+    
+    // {...props}에서 ...은 es6의 유동길이의 오브젝트를 받을때 쓰는 문법같음
+    
+    * 라우트에서 따로 값 넘겨주는건 해결 했으나 서버측에서 렌더링된 props는 유지가 되지 않는것 같음.
+    
+    * 서버 사이드에서 렌더링은 되지만 이벤트 바인딩은 되지 않는것 같음 (서버 내부에선 되는데 프론트로 넘어올때 모두 풀림);
+    
+    ?) 로그를 출력해보면 처음 로드될때는 서버렌더링을 하나 그 후 메뉴 이동시엔 서버측에서는 반응이 없고 클라이언트단 리엑트 라우트를 통한의
+       뷰만 이동하게됨 이거 맞게한건가..?
+       
+    * 뭔가 계속 찾아보니까 위 방법을 사용한 사람들은 온리 서버사이드 렌더링만 행하고 있음, 클라이언트 렌더링을 고려안한 방법인듯함.
+    
+    
+        
+    
+//입대일 20160620 생년월일941107
+공군 정보통신학교
+오후 1:02
+
+http://www.airforce.mil.kr:8081/user/indexMain.action?siteId=last2
+여기서 보내���수있음

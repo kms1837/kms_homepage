@@ -53,14 +53,17 @@ section{
     list-style: none;
 }
 
-.leftSide ul li{
+.leftSide ul li a{
+    display: block;
     margin: 5px 0;
     padding: 10px;
+    color: black;
     background-color: #EAEAEA;
+    text-decoration: none;
     transition: all 0.2s ease;
 }
 
-.leftSide ul li:hover, .leftSide ul .select {
+.leftSide ul li a:hover, .leftSide ul .select {
     background-color: #484848;
     color: white;
 }
@@ -199,6 +202,10 @@ footer {
     width: 83%;
     margin-right: 10px;
     padding: 5px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
 }
 
 .reply_delete {
@@ -311,4 +318,26 @@ footer {
     width: 15px;
     left: -50px;
     top: 17px;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #fff;
+}
+
+.admin-btn {
+    position: absolute;
+    margin-left: -145px;
+    background-color: #fff;
+    padding: 7px 20px;
+    z-index: -1;
+    border: 8px solid #008DCE;
 }

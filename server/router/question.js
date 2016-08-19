@@ -5,7 +5,6 @@ var router = express.Router();
 var Question = require('../models/question_model.js');
 
 router.get('/', function(request, response) {
-    console.log('call!');
     Question.find().sort({id:-1}).exec(function(err, questions){
         if (err) {
             console.err(err);

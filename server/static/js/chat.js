@@ -22,9 +22,11 @@ $(document).ready(function() {
 
 function connect()
 {
-    var url = "ws://" + 'kms-net-test-kms1837.c9users.io' + ":8080";
+    var url = "ws://" + 'kms-net-test-kms1837.c9users.io';
     console.log(url);
+    
     web_socket = new WebSocket(url);
+    
     try {
         web_socket.onopen = function() {
             var init_message = {

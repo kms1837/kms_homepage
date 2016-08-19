@@ -31,11 +31,12 @@ class QuestionList extends React.Component
     render () {
         var questions = this.state.data;
         var updatefunc = this.updateData;
+        var self = this;
         return (
           <div className="question_board">
             <div className="question_list">
               {questions.map(function(question) {
-                return <QuestionBox update={updatefunc} key={question.id} data={question}/>;
+                return <QuestionBox permission={self.props.permission} update={updatefunc} key={question.id} data={question}/>;
               })}
             </div>
           </div>

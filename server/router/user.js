@@ -5,9 +5,15 @@ var router = express.Router();
 var UserModel = require('../models/user_model.js');
 
 router.get('/', function(request, response) {
-    UserModel.find(function(err, users) {
-       response.send(users); 
-    });
+    if(request.session.info) {
+        UserModel.find(function(err, users) {
+            //users
+            response.status(200).send({users});
+        });
+    } else {
+      //response.status(200).send({permission : 1});
+      response.status(200).send({permission : 0});  
+    }
 });
 
 router.post('/', function(request, response) {

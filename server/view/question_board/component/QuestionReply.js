@@ -30,12 +30,15 @@ class QuestionReply extends React.Component
   
   render () {
     var self = this;
+    var deleteButton = this.props.permission === 0 ? (<button className="delete-btn" onClick={self.reply_delete}>X</button>) : '';
     var questionReplyNodes = this.props.data.map(function(reply, index) {
       return (
         <li className="reply" itemID={index}>
           <span className="reply_deco"> ></span>
           <span className="reply_text">{reply.text}</span>
-          <span className="reply_delete"><button onClick={self.reply_delete}>X</button></span>
+          <span className="reply_delete">
+            { deleteButton }
+          </span>
         </li>
       );
     });

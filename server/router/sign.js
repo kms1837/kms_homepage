@@ -17,8 +17,6 @@ router.post('/sign_in', function(request, response) {
     var userName = request.params.username;
     var password = request.params.password;
     
-    session.name = 'asd';
-    
     UserModel.findOne({'username':userName, 'password': password },function(err, user){
         if(err){
             console.err(err);
@@ -26,16 +24,20 @@ router.post('/sign_in', function(request, response) {
         } else {
             if(user) {
                 session.name = user.name;
-                response.redirect('/');       
-            }    
+                session.permission = user.permission;
+                response.redirect('/');
+            }
         }
     });
     
-    response.send(200, '뭐?');
+    response.status(200).send('ok');
 });//sign_in
 
-router.get('/sign_out', function(request, response) {
-    response.render('../template/sign_in.html');
+router.post('/sign_out', function(request, response) {
+    var session = request.session;
+    session = {};
+    
+    response.status(200).send('ok');
 });
 
 router.get('/sign_up', function(request, response) {

@@ -6,8 +6,12 @@ class QuestionView extends React.Component
 {
   constructor() {
     super();
-    this.state = {view: <QuestionList url="/question/"/>, btn_name : '글쓰기', view_num : 0};
     this.view_change = this.view_change.bind(this);
+  }
+  
+  componentWillMount() {
+    console.log(this);
+    this.state = {view: <QuestionList permission={this.props.permission} url="/question/"/>, btn_name : '글쓰기', view_num : 0};
   }
   
   view_change() {
@@ -17,7 +21,7 @@ class QuestionView extends React.Component
         this.setState({view: <QuestionWrite update={this.view_change}/>, btn_name : '글쓰기 취소', view_num : 1});
         break;
       case 1:
-        this.setState({view: <QuestionList url="/question/"/>, btn_name : '글쓰기', view_num : 0});
+        this.setState({view: <QuestionList permission={this.props.permission} url="/question/"/>, btn_name : '글쓰기', view_num : 0});
         break;
     }
   }

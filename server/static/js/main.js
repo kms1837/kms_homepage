@@ -1,37 +1,11 @@
 $(document).ready(function() {
-    $.get('http://kms-net-test-kms1837.c9users.io/ruliweblog', function(data) {
+    $.get('/ruliweblog', function(data) {
        $('#ruliweb_time').text(data);
     });
     
     var timer = setInterval(timerEventHander, 1000);
     
     var d_day = new Date('July 25, 2017');
-    
-    $('.leftSide ul li').click(function(data) {
-        var select_manu = $(data.target).attr('id');
-        var change_page_url;
-        
-        switch (select_manu) {
-            case 'menu1':
-                change_page_url = 'board.html';
-                break;
-            case 'menu2':
-                change_page_url = 'question';
-                break;
-            case 'menu3':
-                change_page_url = 'recent.html';
-                break;
-            case 'menu4':
-                change_page_url = 'chat.html';
-                break;
-        }
-        
-        $('.leftSide ul .select').removeClass();
-        $(data.target).addClass('select');
-        $.get(change_page_url, function(data) {
-            $('.content').html(data);
-        });
-    })
     
     function timerEventHander() {
         var now = new Date();
@@ -47,9 +21,4 @@ $(document).ready(function() {
         $('#army_dday').text(d);
         $('#army_time').text('(' + h + ':' + m + ':' + s + ')');
     }
-    
-    
-    /*$(document).on('click', '.edit_question', function(data) {
-      console.log('asd');
-    });*/
 });

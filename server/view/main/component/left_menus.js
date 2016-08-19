@@ -7,11 +7,11 @@ class LeftMenus extends React.Component
         return (
             <aside className="leftSide">
                 <ul>
-                    <li id="menu1" class="select"><Link to="home">메인</Link></li>
-                    <li id="menu2"><Link to="question_board">질문</Link></li>
-                    <li id="menu3"><Link to="resent">Github Commit</Link></li>
-                    <li id="menu4">채팅 </li>
-                    <li id="menu5">일정 </li>
+                    <li><Link to="home" className="select">메인</Link></li>
+                    <li><Link to="question_board">질문</Link></li>
+                    <li><Link to="resent">Github Commit</Link></li>
+                    <li><Link to="chat">채팅</Link></li>
+                    <li><Link to="calendar">일정</Link></li>
                 </ul>
             </aside>
         );

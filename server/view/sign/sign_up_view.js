@@ -28,16 +28,21 @@ class SignUpView extends React.Component
     
     render() {
         return (
-            <div>
-                <input onChange={this.changeValue} name='username' type="text"/>
-                <input onChange={this.changeValue} type="text"/>
-                <button onClick={this.signUp}>submit</button>
+            <div className="wrap">
+                <div className="container">
+                    <input onChange={this.changeValue} name='username' type="text"/>
+                    <input onChange={this.changeValue} type="text"/>
+                    <button onClick={this.signUp}>submit</button>
+                </div>
             </div>
         );
     }
 }
 
+export default SignUpView;
+
+/*
 ReactDOM.render(
   <SignUpView/>,
   document.querySelector('.content')
-);
+);*/
