@@ -5,42 +5,31 @@ var router = express.Router();
 
 var UserModel = require('../models/user_model.js');
 
-router.get('/sign_in', function(request, response) {
+router.post('/sign_in', (request, response) => {
     var session = request.session;
-    if(session.name) response.redirect('/');
     
-    response.render('../template/sign_in.html');
-});
-
-router.post('/sign_in', function(request, response) {
-    var session = request.session;
-    var userName = request.params.username;
-    var password = request.params.password;
-    
-    UserModel.findOne({'username':userName, 'password': password },function(err, user){
-        if(err){
-            console.err(err);
-            throw err;
+    UserModel.findOne(request.body, (err, user) => {
+        if (err) {
+            console.log(err);
         } else {
-            if(user) {
-                session.name = user.name;
-                session.permission = user.permission;
-                response.redirect('/');
+            if (user) {
+                session['userinfo'] = user;
+                response.status(200).send('ok');
+            } else {
+                response.status(400).send({message : 'unknown admin'});
             }
         }
     });
-    
-    response.status(200).send('ok');
 });//sign_in
 
-router.post('/sign_out', function(request, response) {
+router.post('/sign_out', (request, response) => {
     var session = request.session;
-    session = {};
+    delete session['userinfo'];
     
     response.status(200).send('ok');
 });
 
-router.get('/sign_up', function(request, response) {
+router.get('/sign_up', (request, response) => {
     response.render('../template/sign_up.html');
 });
 

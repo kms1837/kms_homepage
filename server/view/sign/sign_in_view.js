@@ -21,8 +21,13 @@ class SignInView extends React.Component
     
     logIN (event) {
         event.preventDefault();
-        $.post('/sign_in', this.state, (response) => {
-            console.log(response);
+        console.log(this.state);
+        
+        $.post('/sign_in', this.state)
+        .done(() => {
+            window.location = '/';
+        }).fail( (request) => {
+            alert( "error" );
         });
     }
     
@@ -30,10 +35,20 @@ class SignInView extends React.Component
         return (
             <div className="wrap">
                 <div className="container">
-                    <input onChange={this.changeValue} name='username' type="text"/>
-                    <input onChange={this.changeValue} type="text"/>
-                    <button onClick={this.logIN}>submit</button>
-                    <button>회원가입</button>
+                    <div className="login_box">
+                        <div className="from_element">
+                            <label>Id</label>
+                            <input onChange={this.changeValue} name='username' type="text"/>
+                        </div>
+                        <div className="from_element">
+                            <label>Password</label>
+                            <input onChange={this.changeValue} name='password' type="password"/>
+                        </div>
+                        <div className="from_element">
+                            <button onClick={this.logIN}>로그인</button>
+                            <button>회원가입</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

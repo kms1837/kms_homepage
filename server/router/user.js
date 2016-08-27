@@ -5,18 +5,15 @@ var router = express.Router();
 var UserModel = require('../models/user_model.js');
 
 router.get('/', function(request, response) {
-    if(request.session.info) {
-        UserModel.find(function(err, users) {
-            //users
-            response.status(200).send({users});
-        });
+    var userInfo = request.session['userinfo'];
+    if(userInfo) {
+        response.status(200).send(userInfo);
     } else {
-      //response.status(200).send({permission : 1});
-      response.status(200).send({permission : 0});  
+        response.status(200).send({permission : 1});
     }
 });
 
-router.post('/', function(request, response) {
+router.post('/', (request, response) => {
     var userData = request.body;
     console.log('user insert : ', userData);
     

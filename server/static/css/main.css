@@ -335,9 +335,50 @@ footer {
 
 .admin-btn {
     position: absolute;
-    margin-left: -145px;
+    margin-left: -160px;
     background-color: #fff;
     padding: 7px 20px;
     z-index: -1;
     border: 8px solid #008DCE;
+}
+
+.login_box {
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 240px; /*귀찮아*/
+}
+
+.from_element {
+    margin-bottom: 10px; 
+}
+
+.login_box .from_element label {
+    width: 80px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.from_element input[type="text"], .from_element input[type="password"] {
+    border: none;
+    border-bottom: 2px solid #008dce;
+}
+
+.from_element button {
+    background: none;
+    min-width: 70px;
+    min-height: 25px;
+    border: 3px solid #008dce;
+    color: #008dce;
+    margin: 3px;
+    padding: 3px 15px;
+    transition: 0.2s all;
+}
+
+.from_element button:hover {
+    border: 3px solid #00547b;
+    color: #00547b;
+    font-weight: bold;
 }
