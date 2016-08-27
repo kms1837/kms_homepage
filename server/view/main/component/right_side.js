@@ -7,12 +7,13 @@ class RightSide extends React.Component
             <aside className="rightSide">
                 <div id="status">
                     <div id="ruliweb_status">
-                        <span>접속수집현황:</span><span id="ruliweb_time"></span>
+                        <span>접속수집현황:</span>
+                        <span id="ruliweb_time"> {this.props.ruliwebTime} </span>
                     </div>
                     <div id="army_status">
                         <span className="dd">D-</span>
-                        <span id="army_dday"></span>
-                        <div id="army_time"></div>
+                        <span id="army_dday">{this.props.armyDay}</span>
+                        <div id="army_time">{this.props.armyTime}</div>
                     </div>
                 </div>
                 <div id="chat">
