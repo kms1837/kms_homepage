@@ -14,7 +14,7 @@ exports.run = function(server){
         var connection = request.accept(null, request.origin);
         connections.push(connection);
         
-        var init_data = '';
+        var init_data = [];
         if(messages.length > 0) init_data = messages;
         
         var init_message = {
@@ -34,7 +34,7 @@ exports.run = function(server){
             
           var send_message = {
             "type" : 'msg',
-            "data" : message.utf8Data
+            "data" : json_data
           };
             
           broadcast(JSON.stringify(send_message));

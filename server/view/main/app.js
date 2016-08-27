@@ -9,13 +9,8 @@ class App extends React.Component
     constructor () {
         super();
         this.state = {
-            armyDay: 0,
-            armyTime: '',
-            ruliwebTime : '',
             permission : 2
         }
-        
-        this.timerEventHander = this.timerEventHander.bind(this);
     }
     
     componentWillMount () {
@@ -24,31 +19,7 @@ class App extends React.Component
             $.get('/user', (data) => {
                 self.setState({permission : data.permission});
             });
-           
-            $.get('/ruliweblog', (data) => {
-                self.setState({ruliwebTime : data});
-            });
-           
-            var timer = setInterval(this.timerEventHander, 1000);
         }//서버 사이드 측 제이쿼리 로드 문제
-    }
-     
-    timerEventHander () {
-        var d_day = new Date('July 25, 2017');
-        
-        var now = new Date();
-        var gap = now.getTime() - d_day.getTime();
-        var d = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
-        var h = Math.floor((gap/(1000*60*60)) % 24) * -1;
-        var m = Math.floor((gap/(1000*60)) % 60) * -1;
-        var s = Math.floor((gap/1000) % 60) * -1;
-        
-        if(m < 10) m = '0' + m;
-        if(s < 10) s = '0' + s;
-        
-        var time = '(' + h + ':' + m + ':' + s + ')';
-        
-        this.setState({armyDay : d, armyTime : time });
     }
     
     signOut () {
@@ -74,9 +45,7 @@ class App extends React.Component
                     <section className="content">
                         {childrenWithProps}
                     </section>
-                    <RightSide  armyDay={this.state.armyDay}
-                                armyTime={this.state.armyTime}
-                                ruliwebTime={this.state.ruliwebTime}/>
+                    <RightSide />
                 </div>
                 <footer>
                     kms1837
