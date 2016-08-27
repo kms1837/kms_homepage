@@ -8,4 +8,4 @@ var questionSchema= mongoose.Schema({
     created_at  : Date
 });
 
-module.exports = mongoose.model('QuestionModel', questionSchema);
+module.exports = mongoose.model('Question', questionSchema);
