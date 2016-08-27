@@ -59,9 +59,7 @@ class RightSide extends React.Component
                         <div id="army_time">{this.state.armyTime}</div>
                     </div>
                 </div>
-                <div id="chat">
-                    <ChatView />
-                </div>
+                <ChatView />
             </aside>
         );
     }

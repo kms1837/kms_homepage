@@ -81,20 +81,3 @@ class Chat {
 };
 
 export default Chat;
-
-/*$('#send_message').click(function(){
-    if(web_socket != undefined) {
-        var messge_input = $('#in_message');
-        var message_name = $('#msg_name').val();
-        
-        if(message_name === '') message_name = '이름없음'
-        
-        var message = {
-            'type' : 'msg',
-            'name' : message_name,
-            'message' : messge_input.val()
-        }
-        web_socket.send(JSON.stringify(message));
-        messge_input.val('');
-    }
-});*/

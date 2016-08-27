@@ -51,3 +51,7 @@
 [2016-08-26]
 
     * 몽구스가 첫 콜렉션 생성하면 뒤에 s를 붙이고 모두 소문자로 바꾸고있음(Question -> questions)
+    
+[2016-08-27]
+
+    * height : 100% 는 부모의 height도 결정되야 가능함(max-height, min-height는 안됨)

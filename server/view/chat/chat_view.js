@@ -147,7 +147,7 @@ class ChatView extends React.Component
         var talkData = this.state.talk;
         
         return (
-            <div>
+            <div id="chat">
                 <div id="chat_view">
                     {chatMessages}
                 </div>
