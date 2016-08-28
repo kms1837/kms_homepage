@@ -59,7 +59,7 @@ router.delete('/:question_id', (request, response) => {
     var questionID = request.params.question_id;
     var session = request.session.userinfo;
     
-    var deleteFlag = sessionManager.permissionCheck(session, 1);
+    var deleteFlag = sessionManager.permissionCheck(session, 0);
     
     if (deleteFlag) {
         Question.findOne({'id': questionID}).remove( (err) => {
@@ -74,12 +74,19 @@ router.delete('/:question_id', (request, response) => {
 router.delete('/:question_id/reply/', (request, response) => {
     var questionID = request.params.question_id;
     var deleteIndex = request.body.index;
+    var session = request.session.userinfo;
     
-    Question.findOne({'id': questionID}, (err, question) => {
-        question.replys.splice(deleteIndex, 1);
-        question.save();
-        response.send(question.replys);
-    });
+    var deleteFlag = sessionManager.permissionCheck(session, 0);
+    
+    if (deleteFlag) {
+        Question.findOne({'id': questionID}, (err, question) => {
+            question.replys.splice(deleteIndex, 1);
+            question.save();
+            response.send(question.replys);
+        });
+    } else {
+        response.status(400).send( JSON.stringify({message : 'permission error'}) );
+    }
 });
 
 router.post('/:question_id/reply/', (request, response, err) => {

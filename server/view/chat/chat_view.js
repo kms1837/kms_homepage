@@ -6,10 +6,7 @@ class ChatView extends React.Component
     constructor () {
         super();
         
-        if (typeof window != 'undefined') this.connect();
-        
         this.state = {
-            messages : [],
             talk : {
                 type : '',
                 name : '',
@@ -20,61 +17,24 @@ class ChatView extends React.Component
         this.parseMessage = this.parseMessage.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.changeValue = this.changeValue.bind(this);
-        //this.chat = new Chat($('#chat_view'));
-    }
-
-    connect () {
-        var url = "ws://" + 'kms-net-test-kms1837.c9users.io';
-        
-        this.web_socket = new WebSocket(url);
-        
-        var self = this;
-        
-        try {
-            this.web_socket.onopen = function() {
-                var init_message = {
-                    'type' : 'open',
-                    'name' : '',
-                    'message' : "유저가 입장하였습니다."
-                }
-                
-                self.web_socket.send(JSON.stringify(init_message));
-            }
-         
-            this.web_socket.onmessage = function(e) {
-                var json_data = JSON.parse(e.data);
-                self.message_filter(json_data);
-            }
-         
-            this.web_socket.onclose = function(e) {
-                self.web_socket.send("유저가 종료하였습니다.");
-            }
-        }catch(e) {
-            console.log(e);
-        }
     }
     
-    message_filter (json_data) {
-        //var chat_view = $('#chat_view ul');
+    sendMessage () {
+        var message = this.state.talk;
         
-        switch (json_data.type) {
-            case 'init':
-                this.setState({messages : json_data.data});
-                //chat_view.scrollTop(99999);
-                break;
-                
-            case 'msg':
-                var prevMessage = this.state.messages;
-                prevMessage.push(json_data.data);
-                this.setState({messages : prevMessage}, () => {
-                    var node = this.refs.chat_view;
-                    node.scrollTop = node.scrollHeight; //20은 추가된 텍스트를 고려함
-                });
-                break;
-                
-            default:
-                break;
+        if(message['name'] === '') message['name'] = '이름없음'
+        
+        message['type'] = 'msg';
+        
+        this.props.chat.object.sendMessage(message)
+        
+        var defaultForm = {
+            type : '',
+            name : message['name'],
+            message : ''
         }
+        
+        this.setState({talk : defaultForm});
     }
     
     chat_filter(json_data) {
@@ -90,44 +50,10 @@ class ChatView extends React.Component
                     break;
             }
         } catch (e) {
-            //console.log(e);
+            console.log(e);
         }
         
         return return_data;
-    }
-    
-    parseMessage () {
-        var messages = this.state.messages;
-        if ( messages.length > 0) {
-            var messageNodes = messages.map((object) => {
-                var message = this.chat_filter(object);
-                return (<li>{message}</li>);
-            });
-            
-            return (
-                <ul>
-                    {messageNodes}
-                </ul>
-            )
-        }
-    }
-    
-    sendMessage () {
-        var message = this.state.talk;
-        
-        if(message['name'] === '') message['name'] = '이름없음'
-        
-        message['type'] = 'msg';
-        
-        this.web_socket.send(JSON.stringify(message));
-        
-        var defaultForm = {
-            type : '',
-            name : message['name'],
-            message : ''
-        }
-        
-        this.setState({talk : defaultForm});
     }
     
     changeValue (event) {
@@ -137,6 +63,24 @@ class ChatView extends React.Component
         talkData[name] = value;
         
         this.setState({talk : talkData});
+    }
+    
+    parseMessage () {
+        var messages = this.props.chat.messages;
+        if ( messages.length > 0) {
+            var messageNodes = messages.map((object) => {
+                var message = this.chat_filter(object);
+                return (<li>{message}</li>);
+            });
+            
+            /*var node = this.refs.chat_view;
+            node.scrollTop = node.scrollHeight;*/
+            return (
+                <ul>
+                    {messageNodes}
+                </ul>
+            )
+        }
     }
     
     render () {

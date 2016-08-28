@@ -2,6 +2,7 @@ import React from 'react';
 import RightSide from './component/right_side.js'
 import LeftMenus from './component/left_menus.js'
 
+import Chat from '../module/chat.js'
 import $ from 'jquery'
 
 class App extends React.Component
@@ -9,8 +10,11 @@ class App extends React.Component
     constructor () {
         super();
         this.state = {
+            messages : [],
             permission : 2
         }
+        
+        this.Chat = {};
     }
     
     componentWillMount () {
@@ -19,6 +23,8 @@ class App extends React.Component
             $.get('/user', (data) => {
                 self.setState({permission : data.permission});
             });
+            
+            this.Chat = new Chat(self);
         }//서버 사이드 측 제이쿼리 로드 문제
     }
     
@@ -29,7 +35,16 @@ class App extends React.Component
     }
     
     render () {
-        var childrenWithProps = React.cloneElement(this.props.children, { permission: this.state.permission} );
+        var chatFrom = {
+            object : this.Chat,
+            messages : this.state.messages
+        }
+        
+        var sendRootFrom = {
+            permission: this.state.permission,
+            chat: chatFrom
+        }
+        var childrenWithProps = React.cloneElement(this.props.children, sendRootFrom );
         // <p> 권한 : {this.state.permission} </p>
         
         var adminButton = this.state.permission === 0 ? (<button className="admin-btn" onClick={this.signOut}>Admin Logout</button>) :
@@ -45,7 +60,7 @@ class App extends React.Component
                     <section className="content">
                         {childrenWithProps}
                     </section>
-                    <RightSide />
+                    <RightSide chat={chatFrom} />
                 </div>
                 <footer>
                     kms1837
