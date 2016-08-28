@@ -75,6 +75,8 @@ class ChatView extends React.Component
             
             /*var node = this.refs.chat_view;
             node.scrollTop = node.scrollHeight;*/
+            //TODO - 메세지 입력시 스크롤 내려가는거 추가하기
+            
             return (
                 <ul>
                     {messageNodes}

@@ -49,6 +49,9 @@ class App extends React.Component
         
         var adminButton = this.state.permission === 0 ? (<button className="admin-btn" onClick={this.signOut}>Admin Logout</button>) :
                                                         (<a className="admin-btn" href="/sign_in">Admin Login</a>);
+                                                        
+        var pathName = this.props.location.pathname.split('/')[1];
+        
         return (
             <div className="wrap">
                 <div className="container">
@@ -56,7 +59,7 @@ class App extends React.Component
                     <header>
                         <h1>kms.Net</h1>
                     </header>
-                    <LeftMenus/>
+                    <LeftMenus path={pathName}/>
                     <section className="content">
                         {childrenWithProps}
                     </section>

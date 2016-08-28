@@ -29,8 +29,15 @@ class LeftMenus extends React.Component
     
     parseMenu () {
         var self = this;
+        var pathName = this.props.path;
+        
         return this.state.menus.map( (object, index) => {
-            var select = index === this.state.select ? 'select' : ''
+            var select;
+            select = index === self.state.select ? 'select' : '';
+            if(self.state.select === 0 && self.props.path != '') {
+                select = pathName === object.link ? 'select' : '';
+            }
+            
             return (
                 <li>
                     <Link to={object.link} onClick={ () => this.changeSelect(index)} className={select}>
@@ -42,13 +49,6 @@ class LeftMenus extends React.Component
     }
     
     render () {
-        /*
-            <li><Link to="home" onClick={this.changeSelect} className="select">메인</Link></li>
-            <li><Link to="question_board" onClick={this.changeSelect}>질문</Link></li>
-            <li><Link to="resent" onClick={this.changeSelect}>Github Commit</Link></li>
-            <li><Link to="chat" onClick={this.changeSelect}>채팅</Link></li>
-            <li><Link to="calendar" onClick={this.changeSelect}>일정</Link></li>
-        */
         var menus = this.parseMenu();
         return (
             <aside className="leftSide">
