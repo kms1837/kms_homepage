@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 
 class ChatView extends React.Component
 {
@@ -21,7 +22,7 @@ class ChatView extends React.Component
         this.changeValue = this.changeValue.bind(this);
         //this.chat = new Chat($('#chat_view'));
     }
-    
+
     connect () {
         var url = "ws://" + 'kms-net-test-kms1837.c9users.io';
         
@@ -43,12 +44,6 @@ class ChatView extends React.Component
             this.web_socket.onmessage = function(e) {
                 var json_data = JSON.parse(e.data);
                 self.message_filter(json_data);
-                
-                //var chat_view = view;
-                //var scrollHeight = chat_view.prop('scrollHeight');
-                //var divHeight = chat_view.height();
-                
-                //chat_view.scrollTop(scrollHeight - divHeight);
             }
          
             this.web_socket.onclose = function(e) {
@@ -71,8 +66,10 @@ class ChatView extends React.Component
             case 'msg':
                 var prevMessage = this.state.messages;
                 prevMessage.push(json_data.data);
-                this.setState({messages : prevMessage});
-                //chat_view.append('<li>' + this.chat_filter(JSON.parse(json_data.data)) + '</li>');
+                this.setState({messages : prevMessage}, () => {
+                    var node = this.refs.chat_view;
+                    node.scrollTop = node.scrollHeight; //20은 추가된 텍스트를 고려함
+                });
                 break;
                 
             default:
@@ -126,7 +123,7 @@ class ChatView extends React.Component
         
         var defaultForm = {
             type : '',
-            name : '',
+            name : message['name'],
             message : ''
         }
         
@@ -148,12 +145,16 @@ class ChatView extends React.Component
         
         return (
             <div id="chat">
-                <div id="chat_view">
+                <div ref="chat_view" id="chat_view">
                     {chatMessages}
                 </div>
-                <input onChange={this.changeValue} value={talkData.name} type="type/text" name="name" id="msg_name"/>
-                <input onChange={this.changeValue} value={talkData.message} type="type/text" name="message" id="in_message"/>
-                <button onClick={this.sendMessage} id="send_message">send</button>
+                <div className="edit_bar">
+                    <div className="edit_tool">
+                        <input onChange={this.changeValue} value={talkData.name} type="text" name="name" id="msg_name"/>
+                        <input onChange={this.changeValue} value={talkData.message} type="text" name="message" id="in_message"/>
+                        <button onClick={this.sendMessage} className="pull-right" id="send_message">send</button>
+                    </div>
+                </div>
             </div>
         );
     }

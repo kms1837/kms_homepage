@@ -73,7 +73,7 @@ class Chat {
                     break;
             }
         }catch(e){
-            //console.log(e);
+            console.log(e);
         }
         
         return return_data;

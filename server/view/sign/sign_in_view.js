@@ -45,8 +45,10 @@ class SignInView extends React.Component
                             <input onChange={this.changeValue} name='password' type="password"/>
                         </div>
                         <div className="from_element">
-                            <button onClick={this.logIN}>로그인</button>
-                            <button>회원가입</button>
+                            <div className="pull-right">
+                                <button onClick={this.logIN}>로그인</button>
+                                <button>회원가입</button>
+                            </div>
                         </div>
                     </div>
                 </div>

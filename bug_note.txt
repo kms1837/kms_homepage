@@ -55,3 +55,7 @@
 [2016-08-27]
 
     * height : 100% 는 부모의 height도 결정되야 가능함(max-height, min-height는 안됨)
+    
+[2016-08-28]
+
+    * 자바스크립트는 깊은복사 하려면 편법을 써야함 -ㅁ-;; JSON.parse(JSON.stringify(object)); 이런식
