@@ -291,6 +291,8 @@ footer {
 }
 
 .content_view {
+    min-height: 440px;
+    height: 440px;
     padding: 20px;
 }
 
@@ -402,7 +404,7 @@ input[type="text"], input[type="password"] {
 
 button, input[type="submit"], input[type="button"] {
     background: none;
-    min-width: 70px;
+    /*min-width: 70px;*/
     min-height: 25px;
     border: 3px solid #008dce;
     color: #008dce;
@@ -420,4 +422,13 @@ button:hover, input[type="submit"]:hover, input[type="button"]:hover {
 /* 부트스트랩 */
 .pull-right {
     float : right;
+}
+
+/* big calender */
+.rbc-btn-group button {
+    font-size : 10px;
+}
+
+.rbc-toolbar {
+    height: 60px;
 }

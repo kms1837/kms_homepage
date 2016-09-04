@@ -34,6 +34,7 @@ module.exports = {
                 loader : 'babel',
                 exclude : '/node_modules/',
                 query : {
+                    compact: false,
                     presets : ["es2015", "react"]
                 }
             }
