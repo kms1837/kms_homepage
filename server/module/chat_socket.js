@@ -3,8 +3,8 @@ var redis  = require("redis");
 var client = redis.createClient(6379, '127.0.0.1');
 
 const chatInfo = {
-    type : 'open',
-    message : 'Kms Chat ver 0.3입니다. 즐거운 시간 되십시오.'
+    'type' : 'open',
+    'message' : 'Kms Chat ver 0.3입니다. 즐거운 시간 되십시오.'
 };
 
 const openMessage = {
@@ -14,8 +14,8 @@ const openMessage = {
 }
 
 const closeMessage = {
-    type : 'open',
-    message : '접속을 종료하였습니다.'
+    'type' : 'open',
+    'message' : '접속을 종료하였습니다.'
 }
 
 /*

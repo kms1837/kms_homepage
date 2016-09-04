@@ -6,7 +6,7 @@ class LeftMenus extends React.Component
     constructor () {
         super();
         
-        var menusFrom = [
+        let menusFrom = [
             {name: '메인', link:'home'},
             {name: '질문', link:'question_board'},
             {name: 'Github Commit', link:'resent'},
@@ -28,13 +28,18 @@ class LeftMenus extends React.Component
     }
     
     parseMenu () {
-        var self = this;
-        var pathName = this.props.path;
+        let self = this;
+        let pathName = this.props.path;
+        console.log(this.props);
         
         return this.state.menus.map( (object, index) => {
-            var select;
+            let select;
             select = index === self.state.select ? 'select' : '';
-            if(self.state.select === 0 && self.props.path != '') {
+            
+            if (self.state.select === 0
+                && pathName != ''
+                && pathName != 'home'
+                && pathName != undefined ) {
                 select = pathName === object.link ? 'select' : '';
             }
             
